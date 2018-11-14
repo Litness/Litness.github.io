@@ -2,36 +2,47 @@ package com.example.litness.litness;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
-import java.util.UUID;
+import java.util.HashMap;
 
-public class FirstRunService extends AppCompatActivity {
+public class Client extends AppCompatActivity {
+
+    public static String currentUserName;
+    public static HashMap<String, Bar> barMap;
+    public static Bar activeBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_run_service);
+        setContentView(R.layout.activity_landingpage);
+
+        barMap = new HashMap<>();
+        populateBarMap();
 
         launchFirstActivity();
+        finish();
+    }
+
+    private void populateBarMap() {
+        Bar bar = new Bar("Rounders", "$10", "10 Minutes", "Music", "2");
+        barMap.put(bar.getBarName(),bar);
     }
 
     private void launchFirstActivity() {
-        if (preferenceFileExist("Login")) {
+/*        if (preferenceFileExist("Login"))
             getLogin();
-        }
-        else {
+        else {*/
             startActivity(new Intent(this,LoginActivity.class));
             finish();
-        }
+        //}
 
     }
 
     public boolean preferenceFileExist(String fileName) {
-        File f = new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + fileName + ".xml");
-        return f.exists();
+        return new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + fileName + ".xml").exists();
     }
 
     private void getLogin() {
@@ -52,4 +63,5 @@ public class FirstRunService extends AppCompatActivity {
             finish();
         }
     }
+
 }

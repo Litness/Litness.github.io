@@ -1,13 +1,13 @@
 package com.example.litness.litness;
 
-public class BarObject {
-    private String barName, cover, wait, icon, litness; // add time later
+public class Bar {
+    private String barName, cover, wait, events, litness; // add time later
 
-    public BarObject(String barName, String cover, String wait, String icon, String litness) {
+    public Bar(String barName, String cover, String wait, String events, String litness) {
         this.barName = barName;
         this.cover = cover;
         this.wait = wait;
-        this.icon = icon;
+        this.events = events;
         this.litness = litness;
 
     }
@@ -24,8 +24,8 @@ public class BarObject {
         return wait;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getEvents() {
+        return events;
     }
 
     public String getLitness() {
@@ -36,7 +36,7 @@ public class BarObject {
         this.barName = barName;
     }
 
-    public void setCover(String keyTags) {
+    public void setCover(String cover) {
         this.cover = cover;
     }
 
@@ -44,8 +44,8 @@ public class BarObject {
         this.wait = wait;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setEvents(String events) {
+        this.events = events;
     }
 
     public void setLitness(String litness) {

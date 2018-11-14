@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/barcard_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -18,12 +19,11 @@
         app:contentPadding="5dp">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/layout_single_bar_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/label_bar_card_litness"
+                android:id="@+id/barcard_img_litness"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
 
@@ -44,7 +44,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <!--TODO: make style-->
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -56,9 +55,8 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/label_bar_card_name"
+                    android:id="@+id/barcard_alt_name"
                     style="@style/CardText"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rounders" />
@@ -73,7 +71,6 @@
                         android:layout_width="wrap_content"
                         style="@style/StandardText"
                         android:layout_height="wrap_content"
-
                         android:layout_gravity="center_vertical"
                         android:text="$20" />
 
@@ -85,18 +82,18 @@
                     android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/label_bar_card_wait"
+                            android:id="@+id/barcard_alt_wait"
                             style="@style/HelperText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
-                            android:text="Tags" />
+                            android:text="Wait time" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/label_bar_card_icon"
+                android:id="@+id/barcard_icon"
                 style="@style/StandardText"
                 android:layout_width="wrap_content"
 
@@ -110,7 +107,7 @@
                 android:layout_weight="1"
                 android:text="music"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/label_bar_card_litness"
+                app:layout_constraintEnd_toStartOf="@+id/barcard_img_litness"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 

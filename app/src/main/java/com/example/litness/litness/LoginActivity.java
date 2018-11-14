@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -18,29 +17,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final Button buttonLogin = findViewById(R.id.button_to_main_activity);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                actionAdminLogin();
-            }
-        });
+        Button buttonLogin = findViewById(R.id.button_to_main_activity);
+        buttonLogin.setOnClickListener(v -> actionAdminLogin());
 
-        final Button buttonToNewGroup = findViewById(R.id.button_to_register);
-        buttonToNewGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                actionGotoNewGroup();
-            }
-        });
+        Button buttonToNewGroup = findViewById(R.id.button_to_register);
+        buttonToNewGroup.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)) );
     }
 
     private void actionAdminLogin(){
-        StaticUtilities.hideSoftKeyboard(LoginActivity.this);
         inputEmail = ((EditText) findViewById(R.id.input_email)).getText().toString();
         inputPassword = ((EditText) findViewById(R.id.input_password)).getText().toString();
 
-        saveLoginInfo(inputEmail,inputPassword); //no lol we can't store plaintext password
+        saveLoginInfo(inputEmail,inputPassword);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }
@@ -51,10 +39,5 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("Unm",email);
         editor.putString("Psw",password);
         editor.apply();
-    }
-
-    private void actionGotoNewGroup(){
-        StaticUtilities.hideSoftKeyboard(LoginActivity.this);
-        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 }

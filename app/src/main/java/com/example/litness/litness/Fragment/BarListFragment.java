@@ -10,30 +10,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
-import com.example.litness.litness.BarObject;
+import com.example.litness.litness.Bar;
+import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 
 public class BarListFragment extends Fragment {
 
-    View v;
-    private RecyclerView recyclerView;
-    private List<BarObject> reportList = new ArrayList<>();
-    private BarCardAdapter recyclerViewAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private RecyclerView rv;
+    private BarCardAdapter adapter;
 
-    private String filter = "";
     private SwipeRefreshLayout swipeContainer;
-    private boolean loading = true;
+
+    TextView tvNoBars;
+    ImageView ivSearch;
+    EditText etSearch;
 
     public BarListFragment() {
     }
@@ -41,91 +42,43 @@ public class BarListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_bar_list, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.view_fragment_user_report_history);
-        recyclerViewAdapter = new BarCardAdapter(getContext(),reportList);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        View v = inflater.inflate(R.layout.fragment_barcards, container, false);
+        Toast.makeText(getContext(),"TEST", Toast.LENGTH_SHORT).show();
 
-        pullToRefresh();
-        infiniteScroll();
+        adapter = new BarCardAdapter(getContext());
+
+        rv = v.findViewById(R.id.bars_rv);
+        rv.setAdapter(adapter);
+
+        adapter.updateBars(applyFilter(Client.barMap.values()));
+
+        swipeContainer = v.findViewById(R.id.bars_sr);
+        swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
+
+        tvNoBars = v.findViewById(R.id.bars_alt_nobars);
+
+        //Set the Image search button and edit text for it.
+        ivSearch = v.findViewById(R.id.imageView2);
+        etSearch = v.findViewById(R.id.bars_input_searchbox);
 
         return v;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        populateFragment();
+    public void onResume(){
+        super.onResume();
     }
 
-    private void populateFragment() {
-        if(filter.equals("")) {
-            reportList.clear();
-            reportList.add(new BarObject("Rounders", "$20", "< 10 min", "music", "10"));
-            reportList.add(new BarObject("Alcove", "$0", "None", "none", "5"));
-            reportList.add(new BarObject("Catch 22", "$0", "None", "music", "8"));
-            reportList.add(new BarObject("Loosa", "$0", "None", "None", "5"));
+    private void actionSwipeRefresh() {
+        swipeContainer.setRefreshing(true); {
+            adapter.updateBars(applyFilter(Client.barMap.values()));
         }
-        else {
-            reportList.clear();
-            reportList.add(new BarObject("Catch 22", "$0", "None", "music", "8"));
-            reportList.add(new BarObject("Loosa", "$0", "None", "None", "5"));
-        }
+        if (swipeContainer.isRefreshing())
+            swipeContainer.setRefreshing(false);
     }
 
-    private void addMore() {
-        reportList.add(new BarObject("Rounders", "$20", "< 10 min", "music", "10"));
-        reportList.add(new BarObject("Alcove", "$0", "None", "none", "5"));
-        reportList.add(new BarObject("Catch 22", "$0", "None", "music", "8"));
-        reportList.add(new BarObject("Loosa", "$0", "None", "None", "5"));
-
-    }
-
-    public void setFilter(String string) {
-        filter = string;
-        populateFragment();
-    }
-
-    private void pullToRefresh() {
-        swipeContainer = (SwipeRefreshLayout) v.findViewById(R.id.fragment_user_report_history);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeContainer.setRefreshing(true);
-                populateFragment();
-                if(swipeContainer.isRefreshing())
-                    swipeContainer.setRefreshing(false);
-            }
-        });
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
-    }
-
-    private void infiniteScroll() {
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0) {
-                    if (loading) {
-                        int visibleItemCount = mLayoutManager.getChildCount();
-                        int totalItemCount = mLayoutManager.getItemCount();
-                        int pastVisibleItems = mLayoutManager.findFirstVisibleItemPosition();
-                        if (pastVisibleItems + visibleItemCount >= totalItemCount) {
-                            loading = false;
-                            addMore();
-                            recyclerViewAdapter.notifyItemRangeRemoved(0,totalItemCount);
-                            Toast.makeText(getActivity(),visibleItemCount + " " + totalItemCount + " " + pastVisibleItems,Toast.LENGTH_SHORT).show();
-                            recyclerViewAdapter.notifyItemRangeInserted(0, mLayoutManager.getItemCount());
-                            recyclerViewAdapter.notifyDataSetChanged();
-                            loading = true;
-                        }
-
-                    }
-                }
-            }
-        });
+    private List<Bar> applyFilter(Collection<Bar> nonFilteredBarMap) {
+        List<Bar> barList = new ArrayList<>(nonFilteredBarMap);
+        return barList;
     }
 }
