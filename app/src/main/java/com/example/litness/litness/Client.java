@@ -34,6 +34,8 @@ public class Client extends AppCompatActivity {
         bar.cover = "$10";
         bar.wait = "10 Minutes";
         bar.litness = 1;
+        bar.tags.add("Night Clubs");
+        bar.tags.add("All Bars");
 
         Day today = new Day();
         today.events.add("Test");
@@ -43,9 +45,11 @@ public class Client extends AppCompatActivity {
         barMap.put(bar.barName,bar);
 
         bar = new Bar();
-        bar.barName = "Rounders1";
+        bar.barName = "Calm Bar";
         bar.cover = "$10";
         bar.wait = "10 Minutes";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("All Bars");
         bar.litness = 1;
 
         today = new Day();

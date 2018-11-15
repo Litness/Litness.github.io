@@ -20,6 +20,7 @@ import com.example.litness.litness.Adapter.FilterAdapter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
-    LinearLayout filterTainer;
+    List<String> activeFilters = new ArrayList<>();
     TextView tvNoBars;
 
     @Override
@@ -45,20 +46,39 @@ public class MainActivity extends AppCompatActivity {
         adapter = new BarCardAdapter(this);
         rvCards.setAdapter(adapter);
 
+        activeFilters.add("All Bars");
+        updateFilters();
         LinearLayout ll = findViewById(R.id.main_container_filters);
         for(String s : getResources().getStringArray(R.array.filter_options)){
-            View v = getLayoutInflater().inflate(R.layout.adapter_filter_off, null, false);
-            View w = getLayoutInflater().inflate(R.layout.adapter_filter_on, null, false);
+            int layout, hiddenLayout;
+            if(s.equals("All Bars")){
+                layout = R.layout.adapter_filter_on;
+                hiddenLayout = R.layout.adapter_filter_off;
+            }
+            else{
+                layout = R.layout.adapter_filter_off;
+                hiddenLayout = R.layout.adapter_filter_on;
+            }
+            View v = getLayoutInflater().inflate(layout, null, false);
+            View w = getLayoutInflater().inflate(hiddenLayout, null, false);
+
             ((TextView) v.findViewById(R.id.adapter_alt_filter)).setText(s);
             ((TextView) w.findViewById(R.id.adapter_alt_filter)).setText(s);
             w.findViewById(R.id.adapter_container).setVisibility(View.GONE);
-            v.findViewById(R.id.adapter_container).setOnClickListener(x->{
+            v.findViewById(R.id.adapter_container).setOnClickListener(x->{ // OFF to ON
                 v.findViewById(R.id.adapter_container).setVisibility(View.GONE);
                 w.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
+                if(s.equals("All Bars")) activeFilters.remove(s);
+                else activeFilters.add(s);
+                updateFilters();
+
             });
             w.findViewById(R.id.adapter_container).setOnClickListener(x->{
                 w.findViewById(R.id.adapter_container).setVisibility(View.GONE);
                 v.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
+                if(s.equals("All Bars")) activeFilters.add(s);
+                else activeFilters.remove(s);
+                updateFilters();
             });
             ll.addView(v);
             ll.addView(w);
@@ -68,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
 
         tvNoBars = findViewById(R.id.main_alt_nobars);
+    }
+
+    public void updateFilters(){
+        Set<String> bs = Client.barMap.keySet();
+        List<Bar> filtered = new ArrayList<>();
+        for(String s : bs){
+            Bar b = Client.barMap.get(s);
+            for(String f : activeFilters){
+                if(b.tags.contains(f) && !filtered.contains(b))
+                    filtered.add(b);
+            }
+        }
+        adapter.updateBars(filtered);
     }
 
     @Override
@@ -111,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void actionSwipeRefresh() {
         swipeContainer.setRefreshing(true); {
-            adapter.updateBars(applyFilter(Client.barMap.values()));
+            updateFilters();
         }
         if (swipeContainer.isRefreshing())
             swipeContainer.setRefreshing(false);

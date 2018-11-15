@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.litness.litness.R;
 
@@ -25,7 +24,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
     @NonNull
     @Override
     public FilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_filters, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_filter_off, parent, false);
         return new FilterViewHolder(v);
     }
 
