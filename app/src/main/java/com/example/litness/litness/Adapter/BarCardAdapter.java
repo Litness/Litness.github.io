@@ -19,6 +19,7 @@ import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +27,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
     private Context ctx;
     private List<Bar> data;
-    FilterAdapter filterAdapter;
 
     public BarCardAdapter(Context c) {
         ctx = c;
@@ -48,19 +48,25 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
     public void onBindViewHolder(@NonNull BarViewHolder holder, int position) {
         Bar b = data.get(position);
 
-        List<String> tags = new ArrayList<>();
-        tags.add("Music");
-        tags.add("Bottomless Mimosas");
         holder.tagTainer.removeAllViews();
-        for(String cat : tags) {
+        //get all the events for the day\
+        System.out.println((Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1);
+        for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].events) {
             @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
             ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
             holder.tagTainer.addView(v);
         }
 
-        holder.tvBarName.setText(b.getBarName());
-        holder.tvWaitTime.setText(b.getWait());
-        holder.tvCover.setText(b.getCover());
+        //get all the specials for the day
+        for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].specials) {
+            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
+            ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
+            holder.tagTainer.addView(v);
+        }
+
+        holder.tvBarName.setText(b.barName);
+        holder.tvWaitTime.setText(b.wait);
+        holder.tvCover.setText(b.cover);
 
         holder.cardContainer.setOnClickListener(v -> {
             //get the bar clicked on

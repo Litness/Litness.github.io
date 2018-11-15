@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.litness.litness.Bar.Day;
+
 import java.io.File;
 import java.util.HashMap;
 
@@ -27,8 +29,31 @@ public class Client extends AppCompatActivity {
     }
 
     private void populateBarMap() {
-        Bar bar = new Bar("Rounders", "$10", "10 Minutes", "Music", "2");
-        barMap.put(bar.getBarName(),bar);
+        Bar bar = new Bar();
+        bar.barName = "Rounders";
+        bar.cover = "$10";
+        bar.wait = "10 Minutes";
+        bar.litness = "1";
+
+        Day today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Rounders1";
+        bar.cover = "$10";
+        bar.wait = "10 Minutes";
+        bar.litness = "1";
+
+        today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
     }
 
     private void launchFirstActivity() {
