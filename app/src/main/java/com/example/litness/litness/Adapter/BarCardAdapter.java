@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -47,10 +48,19 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
     public void onBindViewHolder(@NonNull BarViewHolder holder, int position) {
         Bar b = data.get(position);
 
-        holder.textViewBarName.setText(b.getBarName());
-        holder.textViewWait.setText(b.getWait());
-        holder.textViewCover.setText(b.getCover());
-        holder.textViewTime.setText(b.getEvents());
+        List<String> tags = new ArrayList<>();
+        tags.add("Music");
+        tags.add("Bottomless Mimosas");
+        holder.tagTainer.removeAllViews();
+        for(String cat : tags) {
+            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
+            ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
+            holder.tagTainer.addView(v);
+        }
+
+        holder.tvBarName.setText(b.getBarName());
+        holder.tvWaitTime.setText(b.getWait());
+        holder.tvCover.setText(b.getCover());
 
         holder.cardContainer.setOnClickListener(v -> {
             //get the bar clicked on
@@ -66,16 +76,17 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
     class BarViewHolder extends RecyclerView.ViewHolder{
 
+        LinearLayout tagTainer;
         private CardView cardContainer;
-        private TextView textViewBarName, textViewWait, textViewCover,  textViewTime;
+        private TextView tvBarName, tvWaitTime, tvCover;
 
-        BarViewHolder(View itemView) {
-            super(itemView);
+        BarViewHolder(View v) {
+            super(v);
+            tagTainer = v.findViewById(R.id.barcard_container_tags);
             cardContainer = itemView.findViewById(R.id.barcard_cv);
-            textViewBarName = itemView.findViewById(R.id.barcard_alt_name);
-            textViewWait = itemView.findViewById(R.id.barcard_alt_wait);
-            textViewCover = itemView.findViewById(R.id.label_bar_card_cover);
-            textViewTime = itemView.findViewById(R.id.barcard_icon);
+            tvBarName = itemView.findViewById(R.id.barcard_alt_name);
+            tvWaitTime = itemView.findViewById(R.id.barcard_alt_wait);
+            tvCover = itemView.findViewById(R.id.barcard_alt_cover);
         }
     }
 

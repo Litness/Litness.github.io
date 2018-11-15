@@ -71,10 +71,6 @@ public class BarListFragment extends Fragment {
 
         tvNoBars = v.findViewById(R.id.bars_alt_nobars);
 
-        //Set the Image search button and edit text for it.
-        ivSearch = v.findViewById(R.id.imageView2);
-        etSearch = v.findViewById(R.id.bars_input_searchbox);
-
         return v;
     }
 

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#388E3C</color>
-    <color name="colorPrimaryDark">#1B5E20</color>
-    <color name="colorAccent">#32b47d</color>
-    <color name="colorLightText">#FFFFFF</color>
+    <color name="Primary">#1564bf</color>
+    <color name="PrimaryDark">#00438f</color>
+    <color name="PrimaryLight">#39859D</color>
+    <color name="PrimarySuperlight">#e6f1ff</color>
+    <color name="Accent">#FF3F80</color>
+    <color name="AccentDark">#cfc8a2</color>
+
+    <color name="LightText">#FFFFFF</color>
     <color name="colorPrimaryOutline">#FFFFFF</color>
     <color name="colorRipple">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
-    <color name="colorSecondaryText">#757575</color>
-    <color name="colorSecondaryOutline">#7396bf</color>
-    <color name="colorPrimaryText">#FFFFFF</color>
-    <color name="colorTextFieldBackground">#FFFFFF</color>
-    <color name="colorAlertText">#cc3333</color>
-    <color name="colorPrimarySuperlight">#bbdefa</color>
-    <color name="colorBackground">#424242</color>
-    <color name="colorForeground">#000000</color>
-    <color name="PrimarySuperlight">#e6f1ff</color>
-    <color name="PrimaryLight">#99C9FF</color>
-    <color name="LightText">#FFFFFF</color>
+    <color name="StandardText">#FFFFFF</color>
+    <color name="HelperText">#FFFFFF</color>
+    <color name="colorBackground">#303030</color>
+    <color name="colorForeground">#424242</color>
+    <color name="OffWhiteBackground">#f5fcff</color>
+
 </resources>

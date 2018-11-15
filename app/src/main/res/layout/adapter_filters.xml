@@ -17,6 +17,6 @@
         android:elevation="4dp"
         android:fontFamily="@font/martel_sans_semibold"
         android:text="Category"
-        android:textColor="#AA00438F"
+        android:textColor="@color/StandardText"
         android:clickable="false" />
 </FrameLayout>

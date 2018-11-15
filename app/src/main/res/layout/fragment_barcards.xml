@@ -31,60 +31,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/bars_input_searchbox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Search by Name"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:alpha=".8"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_search_black_24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bars_input_searchbox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bars_input_searchbox" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/bars_rv_filter"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layoutDirection="rtl"
+                android:background="@color/colorForeground"
                 android:orientation="horizontal"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bars_input_searchbox">
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager">
             </android.support.v7.widget.RecyclerView>
 
-        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/bars_sr"

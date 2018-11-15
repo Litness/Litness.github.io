@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.litness.litness.Dialog.InputDialog;
+import com.example.litness.litness.Dialog.RegisterDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -17,17 +21,23 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button buttonLogin = findViewById(R.id.button_to_main_activity);
-        buttonLogin.setOnClickListener(v -> actionAdminLogin());
+        findViewById(R.id.login_button_login).setOnClickListener(v -> actionAdminLogin(((EditText) findViewById(R.id.login_input_email)).getText().toString(), ((EditText) findViewById(R.id.login_input_password)).getText().toString()));
 
-        Button buttonToNewGroup = findViewById(R.id.button_to_register);
-        buttonToNewGroup.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)) );
+        findViewById(R.id.login_button_forgot).setOnClickListener(v-> {
+            InputDialog d = new InputDialog(this,"Email", null);
+            d.setCancelable(false);
+            d.show();
+        });
+
+        //auto sign them in
+        findViewById(R.id.login_button_signup).setOnClickListener(v -> {
+            RegisterDialog d = new RegisterDialog(this, x-> actionAdminLogin(x.get(0),x.get(1)));
+            d.setCancelable(false);
+            d.show();
+        } );
     }
 
-    private void actionAdminLogin(){
-        inputEmail = ((EditText) findViewById(R.id.input_email)).getText().toString();
-        inputPassword = ((EditText) findViewById(R.id.input_password)).getText().toString();
-
+    private void actionAdminLogin(String inputEmail, String inputPassword){
         saveLoginInfo(inputEmail,inputPassword);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
