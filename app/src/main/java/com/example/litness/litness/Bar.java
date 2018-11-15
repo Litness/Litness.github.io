@@ -1,5 +1,5 @@
 package com.example.litness.litness;
-
+//Bryan Test
 public class Bar {
     private String barName, cover, wait, events, litness; // add time later
 
