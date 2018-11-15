@@ -33,7 +33,7 @@ public class Client extends AppCompatActivity {
         bar.barName = "Rounders";
         bar.cover = "$10";
         bar.wait = "10 Minutes";
-        bar.litness = "1";
+        bar.litness = 1;
 
         Day today = new Day();
         today.events.add("Test");
@@ -46,7 +46,7 @@ public class Client extends AppCompatActivity {
         bar.barName = "Rounders1";
         bar.cover = "$10";
         bar.wait = "10 Minutes";
-        bar.litness = "1";
+        bar.litness = 1;
 
         today = new Day();
         today.events.add("Test");

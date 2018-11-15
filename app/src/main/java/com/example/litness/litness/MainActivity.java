@@ -1,21 +1,120 @@
 package com.example.litness.litness;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.litness.litness.Fragment.BarListFragment;
+import com.example.litness.litness.Adapter.BarCardAdapter;
+import com.example.litness.litness.Adapter.FilterAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Fragment fragList;
+
+    private RecyclerView rvCards;
+    private RecyclerView rvFilter;
+    private BarCardAdapter adapter;
+    private FilterAdapter filterAdapter;
+
+    private SwipeRefreshLayout swipeContainer;
+
+    LinearLayout filterTainer;
+    TextView tvNoBars;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+
+
+        rvCards = findViewById(R.id.main_card_rv);
+        adapter = new BarCardAdapter(this);
+        rvCards.setAdapter(adapter);
+
+        rvFilter = findViewById(R.id.main_rv_filter);
+        filterAdapter = new FilterAdapter();
+        rvFilter.setAdapter(filterAdapter);
+
+        filterAdapter.filterList.clear();
+        filterAdapter.filterList.addAll((Arrays.asList(getResources().getStringArray(R.array.filter_options))));
+        filterAdapter.notifyDataSetChanged();
+
+        adapter.updateBars(applyFilter(Client.barMap.values()));
+
+        swipeContainer = findViewById(R.id.main_sr);
+        swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
+
+        tvNoBars = findViewById(R.id.main_alt_nobars);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.input_filter);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(false);
+
+        //fixes all the colors for searching with the toolbar
+        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchAutoComplete.setHintTextColor(getResources().getColor(R.color.PrimaryLight));
+        searchAutoComplete.setTextColor(getResources().getColor(R.color.PrimaryLight));
+
+        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        searchIcon.setImageResource(R.drawable.ic_search_24dp);
+        ImageView closeIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+        closeIcon.setImageResource(R.drawable.ic_close_primary_24dp);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //updateFilters(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //updateFilters(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener( () -> {
+            //updateFilters("");
+            return false;
+        });
+        return true;
+    }
+
+    private void actionSwipeRefresh() {
+        swipeContainer.setRefreshing(true); {
+            adapter.updateBars(applyFilter(Client.barMap.values()));
+        }
+        if (swipeContainer.isRefreshing())
+            swipeContainer.setRefreshing(false);
+    }
+
+    private List<Bar> applyFilter(Collection<Bar> nonFilteredBarMap) {
+        List<Bar> barList = new ArrayList<>(nonFilteredBarMap);
+        return barList;
+    }
+/*    Fragment fragList;
     FragmentManager fragDaddy = getSupportFragmentManager();
 
     @Override
@@ -67,5 +166,5 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         return true;
-    }
+    }*/
 }

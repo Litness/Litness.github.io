@@ -8,7 +8,7 @@ public class Bar {
     public String barName = "";
     public String cover = "";
     public String wait = "";
-    public String litness = "";
+    public Integer litness = 0;
     public List<Integer> photos= new ArrayList<>();
     public List<Integer> livePhotos= new ArrayList<>();
     public List<String> tags = new ArrayList<>();

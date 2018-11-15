@@ -50,7 +50,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
         holder.tagTainer.removeAllViews();
         //get all the events for the day\
-        System.out.println((Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1);
         for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].events) {
             @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
             ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
