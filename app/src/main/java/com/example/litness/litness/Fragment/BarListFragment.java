@@ -1,5 +1,6 @@
 package com.example.litness.litness.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,15 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
+import com.example.litness.litness.Adapter.FilterAdapter;
 import com.example.litness.litness.Bar;
 import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,10 +32,13 @@ import java.util.List;
 public class BarListFragment extends Fragment {
 
     private RecyclerView rv;
+    private RecyclerView rvFilter;
     private BarCardAdapter adapter;
+    private FilterAdapter filterAdapter;
 
     private SwipeRefreshLayout swipeContainer;
 
+    LinearLayout filterTainer;
     TextView tvNoBars;
     ImageView ivSearch;
     EditText etSearch;
@@ -43,12 +50,19 @@ public class BarListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_barcards, container, false);
-        Toast.makeText(getContext(),"TEST", Toast.LENGTH_SHORT).show();
 
         adapter = new BarCardAdapter(getContext());
 
         rv = v.findViewById(R.id.bars_rv);
         rv.setAdapter(adapter);
+
+        rvFilter = v.findViewById(R.id.bars_rv_filter);
+        filterAdapter = new FilterAdapter();
+        rvFilter.setAdapter(filterAdapter);
+
+        filterAdapter.filterList.clear();
+        filterAdapter.filterList.addAll((Arrays.asList(getResources().getStringArray(R.array.filter_options))));
+        filterAdapter.notifyDataSetChanged();
 
         adapter.updateBars(applyFilter(Client.barMap.values()));
 

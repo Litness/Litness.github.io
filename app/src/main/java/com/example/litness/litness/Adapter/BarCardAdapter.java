@@ -1,5 +1,6 @@
 package com.example.litness.litness.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
     private Context ctx;
     private List<Bar> data;
+    FilterAdapter filterAdapter;
 
     public BarCardAdapter(Context c) {
         ctx = c;
@@ -44,7 +46,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
     @Override
     public void onBindViewHolder(@NonNull BarViewHolder holder, int position) {
         Bar b = data.get(position);
-        System.out.println(b.getBarName());
 
         holder.textViewBarName.setText(b.getBarName());
         holder.textViewWait.setText(b.getWait());
