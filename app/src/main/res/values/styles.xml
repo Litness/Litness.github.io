@@ -50,7 +50,7 @@
     <style name="_DarkButton" parent="_HelperText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/gradient_button_dark</item>
+        <item name="android:background">@color/MainButton</item>
         <item name="android:fontFamily">@font/maven_pro_medium</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">6dp</item>
@@ -61,7 +61,7 @@
     </style>
 
     <style name="_LightButton" parent="_HelperText">
-        <item name="android:background">@drawable/gradient_button_light</item>
+        <item name="android:background">@color/SecondaryButton</item>
         <item name="android:fontFamily">@font/martel_sans_semibold</item>
         <item name="android:textColor">#AA000000</item>
         <item name="android:padding">6dp</item>

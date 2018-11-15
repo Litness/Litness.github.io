@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.InputDialog;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //auto sign them in
-        findViewById(R.id.login_button_signup).setOnClickListener(v -> {
+        findViewById(R.id.login_button_register).setOnClickListener(v -> {
             RegisterDialog d = new RegisterDialog(this, x-> actionAdminLogin(x.get(0),x.get(1)));
             d.setCancelable(false);
             d.show();
