@@ -18,7 +18,6 @@ import com.example.litness.litness.Adapter.BarCardAdapter;
 import com.example.litness.litness.Adapter.FilterAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private RecyclerView rvCards;
-    private RecyclerView rvFilter;
     private BarCardAdapter adapter;
-    private FilterAdapter filterAdapter;
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -50,9 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout ll = findViewById(R.id.main_container_filters);
         for(String s : getResources().getStringArray(R.array.filter_options)){
-            View v = getLayoutInflater().inflate(R.layout.adapter_filters, null, false);
+            View v = getLayoutInflater().inflate(R.layout.adapter_filter_off, null, false);
+            View w = getLayoutInflater().inflate(R.layout.adapter_filter_on, null, false);
             ((TextView) v.findViewById(R.id.adapter_alt_filter)).setText(s);
+            ((TextView) w.findViewById(R.id.adapter_alt_filter)).setText(s);
+            w.findViewById(R.id.adapter_container).setVisibility(View.GONE);
+            v.findViewById(R.id.adapter_container).setOnClickListener(x->{
+                v.findViewById(R.id.adapter_container).setVisibility(View.GONE);
+                w.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
+            });
+            w.findViewById(R.id.adapter_container).setOnClickListener(x->{
+                w.findViewById(R.id.adapter_container).setVisibility(View.GONE);
+                v.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
+            });
             ll.addView(v);
+            ll.addView(w);
         }
 
         swipeContainer = findViewById(R.id.main_sr);
