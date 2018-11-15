@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,15 +48,12 @@ public class MainActivity extends AppCompatActivity {
         adapter = new BarCardAdapter(this);
         rvCards.setAdapter(adapter);
 
-        rvFilter = findViewById(R.id.main_rv_filter);
-        filterAdapter = new FilterAdapter();
-        rvFilter.setAdapter(filterAdapter);
-
-        filterAdapter.filterList.clear();
-        filterAdapter.filterList.addAll((Arrays.asList(getResources().getStringArray(R.array.filter_options))));
-        filterAdapter.notifyDataSetChanged();
-
-        adapter.updateBars(applyFilter(Client.barMap.values()));
+        LinearLayout ll = findViewById(R.id.main_container_filters);
+        for(String s : getResources().getStringArray(R.array.filter_options)){
+            View v = getLayoutInflater().inflate(R.layout.adapter_filters, null, false);
+            ((TextView) v.findViewById(R.id.adapter_alt_filter)).setText(s);
+            ll.addView(v);
+        }
 
         swipeContainer = findViewById(R.id.main_sr);
         swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
