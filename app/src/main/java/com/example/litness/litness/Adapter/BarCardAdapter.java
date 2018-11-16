@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,21 +52,41 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         holder.tagTainer.removeAllViews();
         //get all the events for the day\
         for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].events) {
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
-            ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
+            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
+            ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
             holder.tagTainer.addView(v);
         }
 
         //get all the specials for the day
         for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].specials) {
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_tag, null, false);
-            ((TextView) v.findViewById(R.id.adapter_alt_tag)).setText(cat);
+            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
+            ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
             holder.tagTainer.addView(v);
         }
 
         holder.tvBarName.setText(b.barName);
         holder.tvWaitTime.setText(b.wait);
-        holder.tvCover.setText(b.cover);
+
+        //don't show if if there is no wait
+        if(b.wait.equals(""))
+            holder.tvWaitTime.setVisibility(View.GONE);
+
+        //don't show under cover if there isn't one
+        if(!b.coverUnder.equals(""))
+            holder.tvCover.setText(b.coverOver + " | " + b.coverUnder);
+        else
+            holder.tvCover.setText(b.coverOver);
+
+        if(b.litness == 1)
+            holder.imgLit.setImageResource(R.drawable.meter_1);
+        else if(b.litness == 2)
+            holder.imgLit.setImageResource(R.drawable.meter_2);
+        else if(b.litness == 3)
+            holder.imgLit.setImageResource(R.drawable.meter_3);
+        else if(b.litness == 4)
+            holder.imgLit.setImageResource(R.drawable.meter_4);
+        else
+            holder.imgLit.setImageResource(R.drawable.meter_5);
 
         holder.cardContainer.setOnClickListener(v -> {
             //get the bar clicked on
@@ -84,6 +105,7 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         LinearLayout tagTainer;
         private CardView cardContainer;
         private TextView tvBarName, tvWaitTime, tvCover;
+        private ImageView imgLit;
 
         BarViewHolder(View v) {
             super(v);
@@ -92,6 +114,7 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
             tvBarName = itemView.findViewById(R.id.barcard_alt_name);
             tvWaitTime = itemView.findViewById(R.id.barcard_alt_wait);
             tvCover = itemView.findViewById(R.id.barcard_alt_cover);
+            imgLit = itemView.findViewById(R.id.barcard_img_litness);
         }
     }
 

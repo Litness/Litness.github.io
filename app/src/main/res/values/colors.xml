@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Primary">#1564bf</color>
-    <color name="PrimaryDark">#00438f</color>
-    <color name="PrimaryLight">#F0B80C</color>
+    <color name="Primaryold">#1564bf</color>
+    <color name="PrimaryDark">#9b7501</color>
+    <color name="Primary">#F0B80C</color>
     <color name="PrimarySuperlight">#e6f1ff</color>
     <color name="Accent">#FF3F80</color>
     <color name="AccentDark">#cfc8a2</color>
     <color name="MainButton">#00C087</color>
     <color name="SecondaryButton">#B90A60</color>
+    <color name="LinkText">#F0B80C</color>
 
     <color name="LightText">#FFFFFF</color>
     <color name="colorPrimaryOutline">#FFFFFF</color>

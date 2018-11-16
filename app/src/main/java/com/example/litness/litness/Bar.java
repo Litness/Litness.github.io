@@ -6,9 +6,13 @@ import java.util.List;
 //Bryan Test
 public class Bar {
     public String barName = "";
-    public String cover = "";
+    public String coverOver = "$0";
+    public String coverUnder = "";
     public String wait = "";
-    public Integer litness = 0;
+    public int litness = 0;
+    public String phone = "420-867-5309";
+    public String address = "1600 Pennsylvania Avenue NW Washington, DC 20500";
+    public String description = "Hot Girls";
     public List<Integer> photos= new ArrayList<>();
     public List<Integer> livePhotos= new ArrayList<>();
     public List<String> tags = new ArrayList<>();

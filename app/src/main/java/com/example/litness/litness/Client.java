@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.litness.litness.Bar.Day;
+import com.example.litness.litness.Dialog.LoginDialog;
 
 import java.io.File;
 import java.util.HashMap;
 
 public class Client extends AppCompatActivity {
 
-    public static String currentUserName;
+    public static String currentUserName = "";
     public static HashMap<String, Bar> barMap;
     public static Bar activeBar;
 
@@ -31,9 +32,12 @@ public class Client extends AppCompatActivity {
     private void populateBarMap() {
         Bar bar = new Bar();
         bar.barName = "Rounders";
-        bar.cover = "$10";
+        bar.coverOver = "$10";
         bar.wait = "10 Minutes";
         bar.litness = 1;
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.description = "This bar is a chill place with a lot of good beer and hot women";
         bar.tags.add("Night Clubs");
         bar.tags.add("All Bars");
 
@@ -46,11 +50,83 @@ public class Client extends AppCompatActivity {
 
         bar = new Bar();
         bar.barName = "Calm Bar";
-        bar.cover = "$10";
+        bar.coverOver = "$10";
         bar.wait = "10 Minutes";
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("All Bars");
+        bar.litness = 2;
+
+        today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Rounders1";
+        bar.coverOver = "$10";
+        bar.wait = "10 Minutes";
+        bar.litness = 3;
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.description = "This bar is a chill place with a lot of good beer and hot women";
+        bar.tags.add("Night Clubs");
+        bar.tags.add("All Bars");
+
+        today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Calm Bar1";
+        bar.coverOver = "$10";
+        bar.wait = "10 Minutes";
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
         bar.tags.add("Bars with Food");
         bar.tags.add("All Bars");
         bar.litness = 1;
+
+        today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Rounders2";
+        bar.coverOver = "$10";
+        bar.wait = "10 Minutes";
+        bar.litness = 4;
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.description = "This bar is a chill place with a lot of good beer and hot women";
+        bar.tags.add("Night Clubs");
+        bar.tags.add("All Bars");
+
+        today = new Day();
+        today.events.add("Test");
+        today.specials.add("Test Pass");
+        bar.days[4] = today;
+
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Calm Bar2";
+        bar.coverOver = "$10";
+        bar.wait = "10 Minutes";
+        bar.phone = "(205) 252-1213";
+        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("All Bars");
+        bar.litness = 5;
 
         today = new Day();
         today.events.add("Test");
@@ -64,7 +140,7 @@ public class Client extends AppCompatActivity {
 /*        if (preferenceFileExist("Login"))
             getLogin();
         else {*/
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
             finish();
         //}
 
@@ -84,7 +160,7 @@ public class Client extends AppCompatActivity {
     private void checkLogin(String username, String password) {
         //if the login is null
         if(username == null && password == null) {
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
             finish();
         }
         else {
