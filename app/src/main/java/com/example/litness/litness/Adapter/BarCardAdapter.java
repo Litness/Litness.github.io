@@ -50,18 +50,20 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         Bar b = data.get(position);
 
         holder.tagTainer.removeAllViews();
-        //get all the events for the day\
-        for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].events) {
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
-            ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-            holder.tagTainer.addView(v);
-        }
+        //get all the events for the day I just set to zero for easy loading
+        if(b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/] != null) {
+            for (String cat : b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/].events) {
+                @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
+                ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                holder.tagTainer.addView(v);
+            }
 
-        //get all the specials for the day
-        for(String cat : b.days[(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1].specials) {
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
-            ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-            holder.tagTainer.addView(v);
+            //get all the specials for the day
+            for (String cat : b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/].specials) {
+                @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
+                ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                holder.tagTainer.addView(v);
+            }
         }
 
         holder.tvBarName.setText(b.barName);
@@ -72,21 +74,28 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
             holder.tvWaitTime.setVisibility(View.GONE);
 
         //don't show under cover if there isn't one
-        if(!b.coverUnder.equals(""))
+        if(b.coverUnder.length() > 1)
             holder.tvCover.setText(b.coverOver + " | " + b.coverUnder);
         else
             holder.tvCover.setText(b.coverOver);
 
-        if(b.litness == 1)
-            holder.imgLit.setImageResource(R.drawable.meter_1);
-        else if(b.litness == 2)
-            holder.imgLit.setImageResource(R.drawable.meter_2);
-        else if(b.litness == 3)
-            holder.imgLit.setImageResource(R.drawable.meter_3);
-        else if(b.litness == 4)
-            holder.imgLit.setImageResource(R.drawable.meter_4);
-        else
-            holder.imgLit.setImageResource(R.drawable.meter_5);
+        switch (b.litness) {
+            case "1":
+                holder.imgLit.setImageResource(R.drawable.meter_1);
+                break;
+            case "2":
+                holder.imgLit.setImageResource(R.drawable.meter_2);
+                break;
+            case "3":
+                holder.imgLit.setImageResource(R.drawable.meter_3);
+                break;
+            case "4":
+                holder.imgLit.setImageResource(R.drawable.meter_4);
+                break;
+            default:
+                holder.imgLit.setImageResource(R.drawable.meter_5);
+                break;
+        }
 
         holder.cardContainer.setOnClickListener(v -> {
             //get the bar clicked on

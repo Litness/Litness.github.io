@@ -19,9 +19,9 @@ public class RegisterDialog extends AlertDialog{
 
     private Interface.WithStringListListener listener;
 
-    EditText email, pass0, pass1;
+    private EditText email, pass0, pass1;
 
-    public RegisterDialog(Context ctx, Interface.WithStringListListener listener) {
+    RegisterDialog(Context ctx, Interface.WithStringListListener listener) {
         super(ctx);
         this.listener = listener;
     }

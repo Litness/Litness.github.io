@@ -9,7 +9,7 @@ public class Bar {
     public String coverOver = "$0";
     public String coverUnder = "";
     public String wait = "";
-    public int litness = 0;
+    public String litness = "1";
     public String phone = "420-867-5309";
     public String address = "1600 Pennsylvania Avenue NW Washington, DC 20500";
     public String description = "Hot Girls";

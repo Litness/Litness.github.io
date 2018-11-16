@@ -87,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/generaldialog_alt_no"
-                    style="@style/_LightButton"
+                    style="@style/_DarkButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -110,7 +110,7 @@
 
                 <TextView
                     android:id="@+id/generaldialog_alt_yes"
-                    style="@style/_LightButton"
+                    style="@style/_DarkButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

@@ -1,8 +1,10 @@
 package com.example.litness.litness;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +26,9 @@ import android.widget.Toast;
 import com.example.litness.litness.Adapter.BarCardAdapter;
 import com.example.litness.litness.Dialog.InputDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
+import com.example.litness.litness.Dialog.YesNoDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -82,14 +87,10 @@ public class MainActivity extends AppCompatActivity {
             v.findViewById(R.id.adapter_container).setOnClickListener(x->{ // OFF to ON
                 v.findViewById(R.id.adapter_container).setVisibility(View.GONE);
                 w.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
-                if(s.equals("All Bars")) {
-                    System.out.println("Test1");
+                if(s.equals("All Bars"))
                     activeFilters.remove(s);
-                }
-                else {
-                    System.out.println("Test2");
+                else
                     activeFilters.add(s);
-                }
 
                 updateFilters();
 
@@ -98,14 +99,10 @@ public class MainActivity extends AppCompatActivity {
             w.findViewById(R.id.adapter_container).setOnClickListener(x->{ //ON to OFF
                 w.findViewById(R.id.adapter_container).setVisibility(View.GONE);
                 v.findViewById(R.id.adapter_container).setVisibility(View.VISIBLE);
-                if(s.equals("All Bars")) {
-                    System.out.println("Test3");
+                if(s.equals("All Bars"))
                     activeFilters.add(s);
-                }
-                else {
-                    System.out.println("Test4");
+                else
                     activeFilters.remove(s);
-                }
                 updateFilters();
             });
 
@@ -194,33 +191,73 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.login, R.string.logout);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         NavigationView nv = findViewById(R.id.nav_main);
+        View header = nv.getHeaderView(0);
+
         menu = nv.getMenu();
 
-        if(Client.currentUserName.equals(""))
+        //sets the header view
+        if(Client.currentUserName.equals("")) {
+            header.findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
             menu.findItem(R.id.menuLoginLogout).setTitle("Login");
-        else
+        }
+        else {
+            header.findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
+            ((TextView) header.findViewById(R.id.maindrawer_name)).setText(Client.currentUserName);
             menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
-
-        //TODO if user is SuperAdmin, make Admin Tools visible. else they are hidden.
+        }
 
         nv.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.menuLoginLogout) {
                 if(Client.currentUserName.equals("")) {
-                    new LoginDialog(this).show();
+                    new LoginDialog(this, x->{
+                        Client.currentUserName = x;
+                        menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
+                        findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
+                        ((TextView)findViewById(R.id.maindrawer_name)).setText(x);
+                    }).show();
                 }
+                //logout must have been shown so reset current username
                 else {
-                    Client.currentUserName = "";
-                    menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+                    new YesNoDialog(this,"Are you sure you want to Logout?", "", new Interface.YesNoHandler() {
+                        @Override
+                        public void onYesClicked() {
+                            deleteLoginInfo();
+                            findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
+                            menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+                        }
+                        @Override
+                        public void onNoClicked() {
+
+                        }
+                    }).show();
                 }
             }
             return true;
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(Gravity.START);
+        else
+            super.onBackPressed();
+    }
+
+    private boolean deleteLoginInfo() {
+        Client.currentUserName = "";
+        //clear the shared preferences
+        getSharedPreferences("Login", MODE_PRIVATE).edit().clear().apply();
+
+        //remove the file
+        return new File(getApplicationInfo().dataDir + "/shared_prefs/Login.xml").delete();
     }
 }

@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
+import com.example.litness.litness.Client;
 import com.example.litness.litness.Interface;
 import com.example.litness.litness.R;
 
@@ -18,11 +19,14 @@ import java.util.Objects;
 import static android.content.Context.MODE_PRIVATE;
 
 public class LoginDialog extends AlertDialog {
-    Context ctx;
+    private Context ctx;
+    private Interface.WithStringListener listener;
 
-    public LoginDialog(Context c) {
+
+    public LoginDialog(Context c, Interface.WithStringListener listener) {
         super(c);
-        ctx = c;
+        this.listener = listener;
+        this.ctx = c;
     }
 
     @Override
@@ -34,12 +38,13 @@ public class LoginDialog extends AlertDialog {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         Objects.requireNonNull((View) findViewById(R.id.login_button_login)).setOnClickListener(v -> {
-            actionAdminLogin(((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_email))).getText().toString(), ((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_password))).getText().toString());
+            saveLoginInfo(((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_email))).getText().toString(), ((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_password))).getText().toString());
             dismiss();
+            if(listener != null)
+                listener.onEvent(((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_email))).getText().toString());
         });
 
         Objects.requireNonNull((View) findViewById(R.id.login_button_forgot)).setOnClickListener(v-> {
-            dismiss();
             InputDialog d = new InputDialog(ctx,"Email", x->
                 new OkDialog(ctx,"", "A reset password link was sent to " + x, null).show());
             d.setCancelable(false);
@@ -49,19 +54,13 @@ public class LoginDialog extends AlertDialog {
         //auto sign them in
         Objects.requireNonNull((View) findViewById(R.id.login_button_register)).setOnClickListener(v -> {
             dismiss();
-            RegisterDialog d = new RegisterDialog(ctx, x-> actionAdminLogin(x.get(0),x.get(1)));
+            RegisterDialog d = new RegisterDialog(ctx, x-> saveLoginInfo(x.get(0),x.get(1)));
             d.setCancelable(false);
             d.show();
         } );
 
         Objects.requireNonNull((View) findViewById(R.id.login_button_close)).setOnClickListener(x -> dismiss());
 
-    }
-
-    private void actionAdminLogin(String inputEmail, String inputPassword){
-/*        saveLoginInfo(inputEmail,inputPassword);
-        startActivity(new Intent(ctx, MainActivity.class));
-        finish();*/
     }
 
     private void saveLoginInfo(String email, String password) {
