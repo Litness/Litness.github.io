@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
+import com.example.litness.litness.Interface;
 import com.example.litness.litness.R;
 
 import java.util.Objects;
@@ -26,6 +29,9 @@ public class LoginDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_login);
+
+        Objects.requireNonNull(getWindow()).clearFlags( WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         Objects.requireNonNull((View) findViewById(R.id.login_button_login)).setOnClickListener(v -> {
             actionAdminLogin(((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_email))).getText().toString(), ((EditText) Objects.requireNonNull((View) findViewById(R.id.login_input_password))).getText().toString());

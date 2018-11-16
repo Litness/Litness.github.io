@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
+import com.example.litness.litness.Dialog.InputDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
 
 import java.util.ArrayList;
