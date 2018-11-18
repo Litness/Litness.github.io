@@ -42,7 +42,7 @@ public class Client extends AppCompatActivity {
         bar.litness = "5";
         bar.phone = "(205) 345-4848";
         bar.address = "301 Helen Keller Blvd";
-        bar.description = "Very freshman heavy bar. They've got a boom room so great place to dance";
+        bar.description = "Cool nightclub with 3 bars & live music, plus an open-air rooftop space, sports on TV & VIP tables.";
         bar.rating = "3.9";
 
         Day today = new Day();
@@ -53,6 +53,34 @@ public class Client extends AppCompatActivity {
         today.specials.add("$2 Bud Light");
         //always put at index 0. The adapters just look there now so we don't have to come up with so many specials
         bar.days[0] = today;
+
+        today = new Day();
+        today.day = "Monday";
+        today.events.add("Bingo Night");
+        today.specials.add("2-for-1 Margaritas");
+        bar.days[1] = today;
+
+        today = new Day();
+        today.day = "Wednesday";
+        today.events.add("Midweek Mania: DJ Snake");
+        today.specials.add("Half-priced shots");
+        bar.days[3] = today;
+
+        today = new Day();
+        today.day = "Friday";
+        today.events.add("Travis Scott");
+        today.specials.add("$1 Ladies' Drinks");
+        bar.days[5] = today;
+
+        today = new Day();
+        today.day = "Saturday";
+        today.events.add("DJ Crunk");
+        today.specials.add("$2 Beers");
+        today.specials.add("$5 Mixed Drinks");
+        bar.days[6] = today;
+
+        //Review review = new Review;
+
 
         bar.photos.add(R.drawable.img_rounders0);
         bar.photos.add(R.drawable.img_rounders1);
