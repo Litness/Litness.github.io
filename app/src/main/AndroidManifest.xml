@@ -20,6 +20,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".BarDisplayActivity" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDh_4O0VkNhyVf81XDlfF3PvooFuRtfzbw"/>
     </application>
-
 </manifest>

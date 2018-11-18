@@ -65,6 +65,10 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
                 holder.tagTainer.addView(v);
             }
         }
+        //make the specials invisible if there are none
+        else {
+            holder.tagTainer.setVisibility(View.GONE);
+        }
 
         holder.tvBarName.setText(b.barName);
         holder.tvWaitTime.setText(b.wait);

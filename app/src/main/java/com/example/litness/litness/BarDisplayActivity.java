@@ -1,6 +1,9 @@
 package com.example.litness.litness;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,28 +14,50 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.CheckInDialog;
+import com.example.litness.litness.Dialog.OkDialog;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class BarDisplayActivity extends AppCompatActivity {
+
+    public Bar b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_display);
 
+        b = Client.activeBar;
+
         refreshLayout();
 
-        findViewById(R.id.bar_button_checkin).setOnClickListener(v->
-                new CheckInDialog(this, this::updateLitness).show());
+        findViewById(R.id.bar_button_checkin).setOnClickListener(v-> new CheckInDialog(this, this::updateLitness).show());
+
+        findViewById(R.id.bar_alt_phone).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ b.phone))));
+
+        findViewById(R.id.bar_alt_address).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(b.address) + b.barName))));
+
+        findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> new OkDialog(this,"All Events and Specials", "Test",null));
+
+        findViewById(R.id.bar_card_food_drink).setOnClickListener(v-> {
+            Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.bar_card_live_photos).setOnClickListener(v->{
+            Toast.makeText(this, "Photos", Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.bar_card_reviews).setOnClickListener(v->{
+
+        });
     }
 
     private void refreshLayout() {
-        Bar b = Client.activeBar;
-
         Toolbar toolbar = findViewById(R.id.bar_toolbar);
         ((TextView) toolbar.findViewById(R.id.bar_title)).setText(b.barName);
         setSupportActionBar(toolbar);
@@ -50,27 +75,34 @@ public class BarDisplayActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.bar_alt_description)).setText(b.description);
         ((TextView) findViewById(R.id.bar_alt_cover_over)).setText(b.coverOver);
         ((TextView) findViewById(R.id.bar_alt_cover_under)).setText(b.coverUnder);
+        ((TextView) findViewById(R.id.bar_alt_rating)).setText(b.rating);
+
+        //make sure there is an under cover
         if(b.coverUnder.length() < 2) {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
 
-
-/*        //TEMP to test images
-        List<Integer> listPic = new ArrayList<>();
-        listPic.add(R.drawable.default_image_thumbnail);
-        listPic.add(R.drawable.default_image_thumbnail);
-        listPic.add(R.drawable.default_image_thumbnail);
-        listPic.add(R.drawable.default_image_thumbnail);*/
-
         LinearLayout pics = findViewById(R.id.bar_gallery);
         for(int i : b.photos) {
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_pics, null, false);
-            ((ImageView) v.findViewById(R.id.adapter_image)).setImageResource(i);
+            int layout = R.layout.adapter_pics;
+            View v = getLayoutInflater().inflate(layout, null, false);
+            ImageView img = v.findViewById(R.id.adapter_image);
+            img.setImageResource(i);
             pics.addView(v);
         }
 
+/*        LinearLayout pics = findViewById(R.id.bar_gallery);
+        for(Bitmap b: b.p) {
+            int layout = R.layout.adapter_pics;
+            View v = getLayoutInflater().inflate(layout, null, false);
+            ImageView img = v.findViewById(R.id.adapter_image);
+            img.setImageBitmap(b);
+            pics.addView(v);
+        }*/
 
+
+        ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
         //get all the events for the day I just set to zero for easy loading
         if(b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/] != null) {
             LinearLayout events = findViewById(R.id.bar_events);
@@ -88,6 +120,13 @@ public class BarDisplayActivity extends AppCompatActivity {
                 specials.addView(v);
             }
         }
+        //make the events and special bar gone if there are none
+        else
+            findViewById(R.id.bar_card_specials).setVisibility(View.GONE);
+
+        //set description card to null if its null
+        if(b.description.equals(""))
+            findViewById(R.id.bar_card_description).setVisibility(View.GONE);
 
         ImageView imgLit = findViewById(R.id.bar_litness);
         switch (b.litness) {
