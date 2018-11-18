@@ -34,7 +34,7 @@ public class DayDialog extends AlertDialog {
         adapter = new DayDialogAdapter(ctx);
         rv.setAdapter(adapter);
 
-        adapter.updateDays(Arrays.asList(Client.activeBar.days));
+        adapter.updateDays(Client.activeBar.days);
 
         findViewById(R.id.daydialog_button_close).setOnClickListener(x->
                 dismiss());

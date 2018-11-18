@@ -51,15 +51,15 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
         holder.tagTainer.removeAllViews();
         //get all the events for the day I just set to zero for easy loading
-        if(b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/] != null) {
-            for (String cat : b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/].events) {
+        if(b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/ != null) {
+            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.events) {
                 @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
                 ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
                 holder.tagTainer.addView(v);
             }
 
             //get all the specials for the day
-            for (String cat : b.days[0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/].specials) {
+            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.specials) {
                 @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
                 ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
                 holder.tagTainer.addView(v);

@@ -20,11 +20,9 @@ public class Bar {
     public List<String> tags = new ArrayList<>();
     public String rating = "3.5";
     public List<Review> reviews = new ArrayList<>();
-    //public ArrayList<Bitmap> p = new ArrayList<>();
 
     //will store from Sun-Sat
-    public Day[] days = new Day[7];
-
+    public ArrayList<Day> days = new ArrayList<>();
 
     //list will store event
     public static class Day {

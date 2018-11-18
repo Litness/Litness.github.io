@@ -40,15 +40,11 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
     @Override
     public void onBindViewHolder(@NonNull CardDialogViewHolder holder, int position) {
         Day d = data.get(position);
-        if(d != null) {
-            holder.tvTitle.setText(d.day);
-            for(String s : d.events)
-                holder.tvText1.setText(s);
-            for(String s : d.specials)
-                holder.tvText2.setText(s);
-        }
-/*        else
-            holder.cardView.setVisibility(View.GONE);*/
+        holder.tvTitle.setText(d.day);
+        for(String s : d.events)
+            holder.tvText1.setText(s);
+        for(String s : d.specials)
+            holder.tvText2.setText(s);
     }
 
     @Override
