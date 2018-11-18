@@ -68,6 +68,7 @@ public class Client extends AppCompatActivity {
         bar.rating = "3.9";
 
         Day today = new Day();
+        today.day = "Sunday";
         today.events.add("Jon Langston");
         today.events.add("Lil Peep");
         today.specials.add("$5 Tequila Shots");

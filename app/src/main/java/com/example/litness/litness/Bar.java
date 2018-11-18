@@ -23,7 +23,7 @@ public class Bar {
     //public ArrayList<Bitmap> p = new ArrayList<>();
 
     //will store from Sun-Sat
-    public Day[] days = new Day[6];
+    public Day[] days = new Day[7];
 
 
     //list will store event

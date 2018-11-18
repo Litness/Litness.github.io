@@ -7,22 +7,21 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.litness.litness.Adapter.DayDialogAdapter;
 import com.example.litness.litness.Bar.Day;
+import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DayDialog extends AlertDialog {
 
-
     private Context ctx;
     private DayDialogAdapter adapter;
-    private List<Day> data;
 
-
-    public DayDialog(Context c, List<Day> d) {
+    public DayDialog(Context c) {
         super(c);
         ctx = c;
-        data = d;
     }
 
     @Override
@@ -31,8 +30,13 @@ public class DayDialog extends AlertDialog {
         setContentView(R.layout.dialog_day);
 
         RecyclerView rv = findViewById(R.id.dialogcard_rv);
+
         adapter = new DayDialogAdapter(ctx);
         rv.setAdapter(adapter);
 
+        adapter.updateDays(Arrays.asList(Client.activeBar.days));
+
+        findViewById(R.id.daydialog_button_close).setOnClickListener(x->
+                dismiss());
     }
 }
