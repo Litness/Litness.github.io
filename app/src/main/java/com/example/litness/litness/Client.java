@@ -1,23 +1,25 @@
 package com.example.litness.litness;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+
 
 import com.example.litness.litness.Bar.Day;
-import com.example.litness.litness.Dialog.LoginDialog;
 
 import java.io.File;
 import java.util.HashMap;
 
 public class Client extends AppCompatActivity {
+    //protected GeoDataClient mGeoDataClient;
 
     public static String currentUserName = "";
     public static HashMap<String, Bar> barMap;
     public static Bar activeBar;
+
+
+    //private ArrayList<Bitmap> bitmapArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +27,28 @@ public class Client extends AppCompatActivity {
         setContentView(R.layout.activity_landingpage);
 
         barMap = new HashMap<>();
-        populateBarMap();
 
+        // Construct a GeoDataClient.
+/*        mGeoDataClient = Places.getGeoDataClient(this, null);
+
+        //place ID of rounders
+        mGeoDataClient.getPlaceById("ChIJWW5Sc5YChogRm0KRR2FuvDg").addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                PlaceBufferResponse places = task.getResult();
+                Place place = places.get(0);
+                final CharSequence name = place.getName();
+                rating = place.getRating();
+                populateBarMap();
+                launchFirstActivity();
+                finish();
+                Log.i("Place", "Place found: " + place.getName());
+                places.release();
+            } else {
+                Log.e("Place", "Place not found.");
+            }
+        });*/
+
+        populateBarMap();
         launchFirstActivity();
         finish();
     }
@@ -43,6 +65,7 @@ public class Client extends AppCompatActivity {
         bar.phone = "(205) 345-4848";
         bar.address = "301 Helen Keller Blvd";
         bar.description = "Very freshman heavy bar. They've got a boom room so great place to dance";
+        bar.rating = "3.9";
 
         Day today = new Day();
         today.events.add("Jon Langston");
@@ -59,6 +82,7 @@ public class Client extends AppCompatActivity {
         bar.tags.add("Night Clubs");
         bar.tags.add("Under 21");
         bar.tags.add("All Bars");
+
 
         barMap.put(bar.barName,bar);
 
@@ -186,4 +210,30 @@ public class Client extends AppCompatActivity {
             finish();
         }
     }
+
+/*    // Request photos and metadata for the specified place.
+    private void getPhotos(String placeId) {
+        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+        photoMetadataResponse.addOnCompleteListener(task -> {
+            // Get the list of photos.
+            PlacePhotoMetadataResponse photos = task.getResult();
+            // Get the PlacePhotoMetadataBuffer (metadata for all of the photos).
+            PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+            // Get the first photo in the list.
+            PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+            // Get the attribution text.
+            CharSequence attribution = photoMetadata.getAttributions();
+            // Get a full-size bitmap for the photo.
+            Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+            photoResponse.addOnCompleteListener(task1 -> {
+                PlacePhotoResponse photo = task1.getResult();
+                Bitmap bitmap = photo.getBitmap();
+                bitmapArray.add(bitmap); // Add a bitmap to array
+                //handle the new bitmap here
+            });
+            Bar b = barMap.get("Rounders");
+            b.p.add(bitmapArray);
+            barMap.put("Rounders",b);
+        });
+    }*/
 }

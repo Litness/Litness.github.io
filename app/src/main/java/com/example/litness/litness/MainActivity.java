@@ -1,8 +1,6 @@
 package com.example.litness.litness;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,10 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
-import com.example.litness.litness.Dialog.InputDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
 import com.example.litness.litness.Dialog.YesNoDialog;
 
@@ -37,7 +33,6 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
 
 
-    private RecyclerView rvCards;
     private BarCardAdapter adapter;
 
     private Menu menu;
@@ -58,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        rvCards = findViewById(R.id.main_card_rv);
+        RecyclerView rvCards = findViewById(R.id.main_card_rv);
         adapter = new BarCardAdapter(this);
         rvCards.setAdapter(adapter);
 
