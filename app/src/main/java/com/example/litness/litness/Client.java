@@ -61,12 +61,12 @@ public class Client extends AppCompatActivity {
         today = new Day();
         today.day = "Wednesday";
         today.events.add("Midweek Mania: DJ Snake");
-        today.specials.add("Half-priced shots");
+        //today.specials.add("Half-priced shots");
         bar.days.add(today);
 
         today = new Day();
         today.day = "Friday";
-        today.events.add("Travis Scott");
+        //today.events.add("Travis Scott");
         today.specials.add("$1 Ladies' Drinks");
         bar.days.add(today);
 

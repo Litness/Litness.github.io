@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.CheckInDialog;
 import com.example.litness.litness.Dialog.DayDialog;
+import com.example.litness.litness.Dialog.LoginDialog;
 
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,15 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         refreshLayout();
 
-        findViewById(R.id.bar_button_checkin).setOnClickListener(v-> new CheckInDialog(this, this::updateLitness).show() );
+        findViewById(R.id.bar_button_checkin).setOnClickListener(v-> {
+            if(Client.currentUserName.equals(""))
+                new LoginDialog(this, x-> {
+                    new CheckInDialog(this, this::updateLitness).show();
+                    Client.currentUserName = x;
+                }).show();
+            else
+                new CheckInDialog(this, this::updateLitness).show();
+        } );
 
         findViewById(R.id.bar_alt_phone).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ b.phone))));
 
