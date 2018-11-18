@@ -118,10 +118,16 @@ public class MainActivity extends AppCompatActivity {
         List<Bar> filtered = new ArrayList<>();
         for(String s : bs){
             Bar b = Client.barMap.get(s);
+            int add = 1;
             for(String f : activeFilters){
-                if(b.tags.contains(f) && !filtered.contains(b))
-                    filtered.add(b);
+                if(!(b.tags.contains(f) && !filtered.contains(b)))
+                    add = 0;
             }
+            if(add == 1)
+                filtered.add(b);
+            /*if(activeFilters.isEmpty()) {
+                filtered.add(b);
+            }*/
         }
         adapter.updateBars(filtered);
     }

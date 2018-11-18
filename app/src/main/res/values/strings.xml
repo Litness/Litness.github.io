@@ -9,7 +9,6 @@
 
 
     <string-array name="filter_options">
-        <item>All Bars</item>
         <item>Night Clubs</item>
         <item>Bars with Food</item>
         <item>Breweries</item>
