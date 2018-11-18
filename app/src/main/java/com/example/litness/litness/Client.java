@@ -12,14 +12,12 @@ import java.io.File;
 import java.util.HashMap;
 
 public class Client extends AppCompatActivity {
-    //protected GeoDataClient mGeoDataClient;
 
     public static String currentUserName = "";
     public static HashMap<String, Bar> barMap;
     public static Bar activeBar;
 
 
-    //private ArrayList<Bitmap> bitmapArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,26 +25,6 @@ public class Client extends AppCompatActivity {
         setContentView(R.layout.activity_landingpage);
 
         barMap = new HashMap<>();
-
-        // Construct a GeoDataClient.
-/*        mGeoDataClient = Places.getGeoDataClient(this, null);
-
-        //place ID of rounders
-        mGeoDataClient.getPlaceById("ChIJWW5Sc5YChogRm0KRR2FuvDg").addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                PlaceBufferResponse places = task.getResult();
-                Place place = places.get(0);
-                final CharSequence name = place.getName();
-                rating = place.getRating();
-                populateBarMap();
-                launchFirstActivity();
-                finish();
-                Log.i("Place", "Place found: " + place.getName());
-                places.release();
-            } else {
-                Log.e("Place", "Place not found.");
-            }
-        });*/
 
         populateBarMap();
         launchFirstActivity();
@@ -211,30 +189,4 @@ public class Client extends AppCompatActivity {
             finish();
         }
     }
-
-/*    // Request photos and metadata for the specified place.
-    private void getPhotos(String placeId) {
-        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
-        photoMetadataResponse.addOnCompleteListener(task -> {
-            // Get the list of photos.
-            PlacePhotoMetadataResponse photos = task.getResult();
-            // Get the PlacePhotoMetadataBuffer (metadata for all of the photos).
-            PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
-            // Get the first photo in the list.
-            PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
-            // Get the attribution text.
-            CharSequence attribution = photoMetadata.getAttributions();
-            // Get a full-size bitmap for the photo.
-            Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
-            photoResponse.addOnCompleteListener(task1 -> {
-                PlacePhotoResponse photo = task1.getResult();
-                Bitmap bitmap = photo.getBitmap();
-                bitmapArray.add(bitmap); // Add a bitmap to array
-                //handle the new bitmap here
-            });
-            Bar b = barMap.get("Rounders");
-            b.p.add(bitmapArray);
-            barMap.put("Rounders",b);
-        });
-    }*/
 }
