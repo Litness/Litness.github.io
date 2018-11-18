@@ -149,10 +149,26 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                Set<String> bs = Client.barMap.keySet();
+                List<Bar> filteredBySearchValue = new ArrayList<>();
+                for(String s : bs){
+                    Bar b = Client.barMap.get(s);
+                    if(b.barName.toLowerCase().contains(query.toLowerCase()))
+                        filteredBySearchValue.add(b);
+                }
+                adapter.updateBars(filteredBySearchValue);
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
+                Set<String> bs = Client.barMap.keySet();
+                List<Bar> filteredBySearchValue = new ArrayList<>();
+                for(String s : bs){
+                    Bar b = Client.barMap.get(s);
+                    if(b.barName.toLowerCase().contains(newText.toLowerCase()))
+                        filteredBySearchValue.add(b);
+                }
+                adapter.updateBars(filteredBySearchValue);
                 return false;
             }
         });
