@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/daycard_cv"
+    android:id="@+id/reviewcard_cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
@@ -19,21 +19,33 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/daycard_alt_title"
+            android:id="@+id/reviewcard_alt_rating"
             style="@style/_MonoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Sunday"
+            android:text="3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/reviewcard_alt_user" />
 
 
         <TextView
-            android:id="@+id/daycard_label_1"
-            style="@style/_HelperText"
+            android:id="@+id/textView2"
+            style="@style/_MonoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="/5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/reviewcard_alt_rating"
+            app:layout_constraintTop_toBottomOf="@+id/reviewcard_alt_user" />
+
+        <TextView
+            android:id="@+id/reviewcard_alt_text"
+            style="@style/_HelperText_Lower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -41,16 +53,17 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:textColor="@color/MainButton"
-            android:text="Events"
+            android:layout_marginBottom="4dp"
+            android:text="Text"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daycard_alt_title" />
+            app:layout_constraintTop_toBottomOf="@+id/reviewcard_alt_rating" />
 
         <TextView
-            android:id="@+id/daycard_label_2"
-            style="@style/_HelperText"
+            android:id="@+id/reviewcard_alt_user"
+            style="@style/_HelperText_Lower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -58,44 +71,23 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="Specials"
-            android:textColor="@color/SecondaryButton"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="User"
+            app:layout_constraintEnd_toStartOf="@+id/reviewcard_date"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daycard_alt_1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/daycard_alt_1"
+            android:id="@+id/reviewcard_date"
             style="@style/_HelperText_Lower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="TextView"
+            android:text="11/18/18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daycard_label_1" />
-
-        <TextView
-            android:id="@+id/daycard_alt_2"
-            style="@style/_HelperText_Lower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daycard_label_2" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -103,11 +103,11 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
         CardDialogViewHolder(View v) {
             super(v);
             cardView = v.findViewById(R.id.daydialog_card);
-            tvTitle = v.findViewById(R.id.dialogcard_alt_title);
-            tvLabel1 = v.findViewById(R.id.dialogcard_label_1);
-            tvLabel2 = v.findViewById(R.id.dialogcard_label_2);
-            tvText1 = v.findViewById(R.id.dialogcard_alt_1);
-            tvText2 = v.findViewById(R.id.dialogcard_alt_2);
+            tvTitle = v.findViewById(R.id.daycard_alt_title);
+            tvLabel1 = v.findViewById(R.id.daycard_label_1);
+            tvLabel2 = v.findViewById(R.id.daycard_label_2);
+            tvText1 = v.findViewById(R.id.daycard_alt_1);
+            tvText2 = v.findViewById(R.id.daycard_alt_2);
         }
     }
 

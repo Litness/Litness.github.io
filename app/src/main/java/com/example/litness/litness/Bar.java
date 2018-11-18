@@ -31,7 +31,7 @@ public class Bar {
         public List<String> specials = new ArrayList<>();
     }
 
-    public class Review {
+    public static class Review {
         public String user = "";
         public String rating = "";
         public String text = "";

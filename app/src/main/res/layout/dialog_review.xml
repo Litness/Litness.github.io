@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/daydialog_card"
+    android:id="@+id/reviewdialog_card"
     app:cardBackgroundColor="@color/OffWhiteBackground"
     app:cardElevation="2dp">
 
@@ -14,7 +14,7 @@
         android:background="@color/colorBackground">
 
         <ImageView
-            android:id="@+id/daydialog_button_close"
+            android:id="@+id/reviewdialog_button_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -33,21 +33,21 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/daydialog_alt_title"
+                android:id="@+id/reviewdialog_alt_title"
                 style="@style/_HeaderText"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:gravity="center_horizontal"
-                android:text="All Days" />
+                android:text="Reviews" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/daydialog_rv"
+                android:id="@+id/reviewdialog_rv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
