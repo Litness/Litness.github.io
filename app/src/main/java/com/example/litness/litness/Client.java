@@ -41,7 +41,7 @@ public class Client extends AppCompatActivity {
         bar.wait = "10 Minutes";
         bar.litness = "5";
         bar.phone = "(205) 345-4848";
-        bar.address = "1215 University Blvd, Tuscaloosa, AL 35401";
+        bar.address = "301 Helen Keller Blvd";
         bar.description = "Very freshman heavy bar. They've got a boom room so great place to dance";
 
         Day today = new Day();
