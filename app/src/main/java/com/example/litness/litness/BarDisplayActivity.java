@@ -17,9 +17,11 @@ import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.CheckInDialog;
 import com.example.litness.litness.Dialog.DayDialog;
+import com.example.litness.litness.Dialog.ImageDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
 import com.example.litness.litness.Dialog.ReviewDialog;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -57,8 +59,13 @@ public class BarDisplayActivity extends AppCompatActivity {
             Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show();
         });
 
+        List<Integer> img = new ArrayList<>();
+        img.add(R.drawable.img_rounders0);
+        img.add(R.drawable.img_rounders1);
+        img.add(R.drawable.img_rounders2);
+
         findViewById(R.id.bar_card_live_photos).setOnClickListener(v->{
-            Toast.makeText(this, "Photos", Toast.LENGTH_SHORT).show();
+            new ImageDialog(this, img, 0).show();
         });
 
         findViewById(R.id.bar_card_reviews).setOnClickListener(v-> new ReviewDialog(this).show());
@@ -91,11 +98,14 @@ public class BarDisplayActivity extends AppCompatActivity {
         }
 
         LinearLayout pics = findViewById(R.id.bar_gallery);
-        for(int i : b.photos) {
+        //for(int i : b.photos) {
+        for(int i = 0; i < b.photos.size(); i++) {
             int layout = R.layout.adapter_pics;
             View v = getLayoutInflater().inflate(layout, null, false);
             ImageView img = v.findViewById(R.id.adapter_image);
-            img.setImageResource(i);
+            img.setImageResource(b.photos.get(i));
+            int index = i;
+            img.setOnClickListener(x-> new ImageDialog(this,b.photos, index).show());
             pics.addView(v);
         }
 
