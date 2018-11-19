@@ -24,6 +24,7 @@
         <item name="android:minLines">4</item>
         <item name="android:maxLines">10</item>
         <item name="android:cursorVisible">true</item>
+        <item name="android:textColor">@color/StandardText</item>
     </style>
 
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">

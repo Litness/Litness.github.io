@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.litness.litness.Bar.Day;
 import com.example.litness.litness.Bar.Review;
+import com.example.litness.litness.Bar.Item;
+
 
 
 import java.io.File;
@@ -81,7 +83,7 @@ public class Client extends AppCompatActivity {
 
         Review review = new Review();
         review.rating = "3";
-        review.text = "This is a nice bar with a chill environment i'd recommend it to my friends";
+        review.text = "This is a nice bar with a chill environment I'd recommend it to my friends";
         review.user = "James Frank";
         bar.reviews.add(review);
 
@@ -89,10 +91,31 @@ public class Client extends AppCompatActivity {
         bar.photos.add(R.drawable.img_rounders1);
         bar.photos.add(R.drawable.img_rounders2);
 
+        bar.livePhotos.add(R.drawable.img_rounders0);
+        bar.livePhotos.add(R.drawable.img_rounders1);
+        bar.livePhotos.add(R.drawable.img_rounders2);
+
         bar.tags.add("Night Clubs");
         bar.tags.add("Under 21");
         bar.tags.add("All Bars");
 
+        bar.menu.food.add(new Item("Burger", 5));
+        bar.menu.food.add(new Item("Fries", 3));
+        bar.menu.food.add(new Item("Sandwich", 5));
+        bar.menu.food.add(new Item("Fish", 8));
+        bar.menu.food.add(new Item("Burger", 5));
+        bar.menu.food.add(new Item("Fries", 3));
+        bar.menu.food.add(new Item("Sandwich", 5));
+        bar.menu.food.add(new Item("Fish", 8));
+
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Trim Tab IPA", 4));
+        bar.menu.drinks.add(new Item("Good People Pale Ale", 4));
+        bar.menu.drinks.add(new Item("Trim Tab Paradise Now", 4));
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Trim Tab IPA", 4));
+        bar.menu.drinks.add(new Item("Good People Pale Ale", 4));
+        bar.menu.drinks.add(new Item("Trim Tab Paradise Now", 4));
 
         barMap.put(bar.barName,bar);
 
@@ -131,7 +154,6 @@ public class Client extends AppCompatActivity {
         today.events.add("Test");
         today.specials.add("Test Pass");
         bar.days.add(today);
-
 
         barMap.put(bar.barName,bar);
 

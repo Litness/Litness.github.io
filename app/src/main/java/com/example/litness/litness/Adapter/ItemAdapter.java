@@ -21,10 +21,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private List<Item> data = new ArrayList<>();
 
     public ItemAdapter(Context c) {
-        ctx = c;
+        this.ctx = c;
     }
 
-    public void updateFood(Collection<Item> c) {
+    public void updateItems(Collection<Item> c) {
         data = new ArrayList<>(c);
         notifyDataSetChanged();
     }
@@ -39,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Item i = data.get(position);
         holder.tvText.setText(i.item);
-        holder.tvPrice.setText(i.price);
+        holder.tvPrice.setText(Integer.toString(i.price));
     }
 
     @Override
@@ -53,8 +53,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         ItemViewHolder(View v) {
             super(v);
-            tvPrice = v.findViewById(R.id.itemcard_alt_text);
-            tvText = v.findViewById(R.id.itemcard_alt_price);
+            tvPrice = v.findViewById(R.id.itemcard_alt_price);
+            tvText = v.findViewById(R.id.itemcard_alt_text);
         }
     }
 

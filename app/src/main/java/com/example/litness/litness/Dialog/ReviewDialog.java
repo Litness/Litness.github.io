@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.litness.litness.Adapter.ReviewDialogAdapter;
 import com.example.litness.litness.Client;
+import com.example.litness.litness.Bar.Review;
 import com.example.litness.litness.R;
 
 public class ReviewDialog extends AlertDialog {
@@ -30,6 +31,19 @@ public class ReviewDialog extends AlertDialog {
         rv.setAdapter(adapter);
 
         adapter.updateReviews(Client.activeBar.reviews);
+
+        findViewById(R.id.reviewdialog_button_add).setOnClickListener(x-> {
+            dismiss();
+            new AddReviewDialog(ctx, "Add Review", r -> {
+                Review review = new Review();
+                review.text = r.get(0);
+                review.rating = r.get(1);
+                review.user = Client.currentUserName;
+                Client.activeBar.reviews.add(review);
+                new ReviewDialog(ctx).show();
+            }).show();
+
+        });
 
         findViewById(R.id.reviewdialog_button_close).setOnClickListener(x->
                 dismiss());

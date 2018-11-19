@@ -52,11 +52,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-
         RecyclerView rvCards = findViewById(R.id.main_card_rv);
         adapter = new BarCardAdapter(this);
         rvCards.setAdapter(adapter);
 
+        swipeContainer = findViewById(R.id.main_sr);
+        swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
+
+        tvNoBars = findViewById(R.id.main_alt_nobars);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initMenuDrawer();
+        populateBars();
+    }
+
+    public void populateBars() {
         activeFilters.add("All Bars");
         updateFilters();
         LinearLayout ll = findViewById(R.id.main_container_filters);
@@ -104,19 +117,6 @@ public class MainActivity extends AppCompatActivity {
             ll.addView(v);
             ll.addView(w);
         }
-
-        swipeContainer = findViewById(R.id.main_sr);
-        swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
-
-        tvNoBars = findViewById(R.id.main_alt_nobars);
-
-        //initMenuDrawer();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initMenuDrawer();
     }
 
     public void updateFilters(){

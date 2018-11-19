@@ -22,7 +22,7 @@ public class Bar {
     //will store from Sun-Sat
     public List<Day> days = new ArrayList<>();
 
-    public List<Menu> menu = new ArrayList<>();
+    public Menu menu = new Menu();
 
     //list will store event
     public static class Day {
@@ -44,7 +44,13 @@ public class Bar {
     }
 
     public static class Item {
+
         public String item;
         public int price;
+
+        Item(String item, int price) {
+            this.item = item;
+            this.price = price;
+        }
     }
 }

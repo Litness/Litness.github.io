@@ -10,19 +10,17 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.CheckInDialog;
 import com.example.litness.litness.Dialog.DayDialog;
 import com.example.litness.litness.Dialog.ImageDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
+import com.example.litness.litness.Dialog.MenuDialog;
 import com.example.litness.litness.Dialog.ReviewDialog;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -41,6 +39,7 @@ public class BarDisplayActivity extends AppCompatActivity {
         refreshLayout();
 
         findViewById(R.id.bar_button_checkin).setOnClickListener(v-> {
+            //make them login if they aren't
             if(Client.currentUserName.equals(""))
                 new LoginDialog(this, x-> {
                     new CheckInDialog(this, this::updateLitness).show();
@@ -56,20 +55,15 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> new DayDialog(this).show());
 
-        findViewById(R.id.bar_card_food_drink).setOnClickListener(v-> {
-            Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show();
-        });
+        //Only set the listeners if things will exist
+        if(b.menu.food.size() != 0 || b.menu.drinks.size() != 0)
+            findViewById(R.id.bar_card_menu).setOnClickListener(v-> new MenuDialog(this).show());
 
-        List<Integer> img = new ArrayList<>();
-        img.add(R.drawable.img_rounders0);
-        img.add(R.drawable.img_rounders1);
-        img.add(R.drawable.img_rounders2);
+        if(b.livePhotos.size() != 0)
+            findViewById(R.id.bar_card_live_photos).setOnClickListener(v-> new ImageDialog(this, b.livePhotos, 0).show());
 
-        findViewById(R.id.bar_card_live_photos).setOnClickListener(v->{
-            new ImageDialog(this, img, 0).show();
-        });
-
-        findViewById(R.id.bar_card_reviews).setOnClickListener(v-> new ReviewDialog(this).show());
+        if(b.reviews.size() != 0)
+            findViewById(R.id.bar_card_reviews).setOnClickListener(v-> new ReviewDialog(this).show());
     }
 
     private void refreshLayout() {
@@ -77,6 +71,11 @@ public class BarDisplayActivity extends AppCompatActivity {
         ((TextView) toolbar.findViewById(R.id.bar_title)).setText(b.barName);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        //Set up the photos up top
+        setPhotos();
+
+        setLitness();
 
         //make phone underlined
         SpannableString phone = new SpannableString(b.phone);
@@ -98,8 +97,32 @@ public class BarDisplayActivity extends AppCompatActivity {
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
 
+        //Set the day of the week for Event and Specials
+        ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
+
+        //get all the events for the day
+        setEventsAndSpecials();
+
+        //set description card to null if its null
+        if(b.description.equals(""))
+            findViewById(R.id.bar_card_description).setVisibility(View.GONE);
+
+        //if there is no menu for this place
+        if(b.menu.food.size() == 0 && b.menu.drinks.size() == 0)
+            ((TextView) findViewById(R.id.bar_alt_menu)).setText("No Menu");
+
+        if(b.livePhotos.size() == 0)
+            ((TextView) findViewById(R.id.bar_alt_livephotos)).setText("No Live Photos");
+
+        if(b.reviews.size() == 0) {
+            findViewById(R.id.bar_layout_rating).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.bar_alt_reviews)).setText("No Reviews");
+        }
+
+    }
+
+    private void setPhotos(){
         LinearLayout pics = findViewById(R.id.bar_gallery);
-        //for(int i : b.photos) {
         for(int i = 0; i < b.photos.size(); i++) {
             int layout = R.layout.adapter_pics;
             View v = getLayoutInflater().inflate(layout, null, false);
@@ -109,34 +132,9 @@ public class BarDisplayActivity extends AppCompatActivity {
             img.setOnClickListener(x-> new ImageDialog(this,b.photos, index).show());
             pics.addView(v);
         }
+    }
 
-
-        ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
-        //get all the events for the day I just set to zero for easy loading
-        if(b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/ != null) {
-            LinearLayout events = findViewById(R.id.bar_events);
-            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.events) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-                events.addView(v);
-            }
-
-
-            LinearLayout specials = findViewById(R.id.bar_specials);
-            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.specials) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-                specials.addView(v);
-            }
-        }
-        //make the events and special bar gone if there are none
-        else
-            findViewById(R.id.bar_card_specials).setVisibility(View.GONE);
-
-        //set description card to null if its null
-        if(b.description.equals(""))
-            findViewById(R.id.bar_card_description).setVisibility(View.GONE);
-
+    private void setLitness() {
         ImageView imgLit = findViewById(R.id.bar_litness);
         switch (b.litness) {
             case "1":
@@ -155,6 +153,27 @@ public class BarDisplayActivity extends AppCompatActivity {
                 imgLit.setImageResource(R.drawable.meter_5);
                 break;
         }
+    }
+
+    private void setEventsAndSpecials() {
+        //I just set to zero for easy loading
+        if(b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/) != null) {
+            LinearLayout events = findViewById(R.id.bar_events);
+            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.events) {
+                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
+                ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                events.addView(v);
+            }
+            LinearLayout specials = findViewById(R.id.bar_specials);
+            for (String cat : b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/).specials) {
+                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
+                ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                specials.addView(v);
+            }
+        }
+        //make the events and special bar gone if there are none
+        else
+            findViewById(R.id.bar_card_specials).setVisibility(View.GONE);
     }
 
     private void updateLitness(List<String> info) {
