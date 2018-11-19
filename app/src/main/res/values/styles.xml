@@ -119,4 +119,10 @@
         <item name="android:windowIsFloating">false</item>
     </style>
 
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionMenuTextColor">@color/Primary</item>
+        <item name="android:textColorSecondary">@color/Primary</item>
+        <item name="android:textColor">@color/Primary</item>
+    </style>
+
 </resources>

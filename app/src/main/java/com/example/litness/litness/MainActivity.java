@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
 import com.example.litness.litness.Dialog.LoginDialog;
@@ -26,8 +27,8 @@ import com.example.litness.litness.Dialog.YesNoDialog;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,14 +36,15 @@ public class MainActivity extends AppCompatActivity {
 
     private BarCardAdapter adapter;
 
-    private Menu menu;
+    private Menu searchMenu;
+    private Menu sortMenu;
     ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
+    private String query = "";
 
     private SwipeRefreshLayout swipeContainer;
 
     List<String> activeFilters = new ArrayList<>();
-    TextView tvNoBars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +61,15 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer = findViewById(R.id.main_sr);
         swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
 
-        tvNoBars = findViewById(R.id.main_alt_nobars);
+        populateBars();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         initMenuDrawer();
-        populateBars();
+        updateFilters();
     }
 
     public void populateBars() {
@@ -124,22 +127,23 @@ public class MainActivity extends AppCompatActivity {
         List<Bar> filtered = new ArrayList<>();
         for(String s : bs){
             Bar b = Client.barMap.get(s);
-            int add = 1;
+            boolean add = true;
             for(String f : activeFilters){
                 if(!(b.tags.contains(f) && !filtered.contains(b)))
-                    add = 0;
+                    add = false;
             }
-            if(add == 1)
+            //search on bar name if you want
+            if(add && b.barName.toLowerCase().contains(query.toLowerCase()))
                 filtered.add(b);
-            /*if(activeFilters.isEmpty()) {
-                filtered.add(b);
-            }*/
         }
         adapter.updateBars(filtered);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //inflate sort menu
+        getMenuInflater().inflate(R.menu.sort_menu, menu);
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.input_filter);
@@ -160,27 +164,15 @@ public class MainActivity extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                Set<String> bs = Client.barMap.keySet();
-                List<Bar> filteredBySearchValue = new ArrayList<>();
-                for(String s : bs){
-                    Bar b = Client.barMap.get(s);
-                    if(b.barName.toLowerCase().contains(query.toLowerCase()))
-                        filteredBySearchValue.add(b);
-                }
-                adapter.updateBars(filteredBySearchValue);
+            public boolean onQueryTextSubmit(String q) {
+                query = q;
+                updateFilters();
                 return false;
             }
             @Override
-            public boolean onQueryTextChange(String newText) {
-                Set<String> bs = Client.barMap.keySet();
-                List<Bar> filteredBySearchValue = new ArrayList<>();
-                for(String s : bs){
-                    Bar b = Client.barMap.get(s);
-                    if(b.barName.toLowerCase().contains(newText.toLowerCase()))
-                        filteredBySearchValue.add(b);
-                }
-                adapter.updateBars(filteredBySearchValue);
+            public boolean onQueryTextChange(String q) {
+                query = q;
+                updateFilters();
                 return false;
             }
         });
@@ -196,18 +188,31 @@ public class MainActivity extends AppCompatActivity {
             swipeContainer.setRefreshing(false);
     }
 
-    private List<Bar> applyFilter(Collection<Bar> nonFilteredBarMap) {
-        List<Bar> barList = new ArrayList<>(nonFilteredBarMap);
-        return barList;
-    }
-
     //Handles if the nav drawerLayout button is pressed
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.sortmenu_AZ:
+                Toast.makeText(this,"AZ",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_ZA:
+                Toast.makeText(this,"ZA",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_HL:
+                Toast.makeText(this,"HL",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_LH:
+                Toast.makeText(this,"LH",Toast.LENGTH_SHORT).show();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void initMenuDrawer() {
         drawerLayout = findViewById(R.id.drawer_main);
@@ -216,23 +221,23 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(actionbar).setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         NavigationView nv = findViewById(R.id.nav_main);
         View header = nv.getHeaderView(0);
 
-        menu = nv.getMenu();
+        searchMenu = nv.getMenu();
 
         //sets the header view
         if(Client.currentUserName.equals("")) {
             header.findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
-            menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Login");
         }
         else {
             header.findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
             ((TextView) header.findViewById(R.id.maindrawer_name)).setText(Client.currentUserName);
-            menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
+            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Logout");
         }
 
         nv.setNavigationItemSelectedListener(item -> {
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 if(Client.currentUserName.equals("")) {
                     new LoginDialog(this, x->{
                         Client.currentUserName = x;
-                        menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
+                        searchMenu.findItem(R.id.menuLoginLogout).setTitle("Logout");
                         findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
                         ((TextView)findViewById(R.id.maindrawer_name)).setText(x);
                     }).show();
@@ -254,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onYesClicked() {
                             deleteLoginInfo();
                             findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
-                            menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+                            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Login");
                         }
                         @Override
                         public void onNoClicked() {

@@ -3,7 +3,6 @@ package com.example.litness.litness;
 import java.util.ArrayList;
 import java.util.List;
 
-//Bryan Test
 public class Bar {
     public String barName = "";
     public String coverOver = "$0";
