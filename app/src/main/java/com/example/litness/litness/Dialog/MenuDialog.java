@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.example.litness.litness.Adapter.ItemAdapter;
 import com.example.litness.litness.Bar;
-import com.example.litness.litness.Bar.Item;
 import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 

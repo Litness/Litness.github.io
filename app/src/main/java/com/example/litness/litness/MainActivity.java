@@ -26,8 +26,8 @@ import com.example.litness.litness.Dialog.YesNoDialog;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
     private Menu menu;
     ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
+    private String query = "";
 
     private SwipeRefreshLayout swipeContainer;
 
     List<String> activeFilters = new ArrayList<>();
-    TextView tvNoBars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer = findViewById(R.id.main_sr);
         swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
 
-        tvNoBars = findViewById(R.id.main_alt_nobars);
+        populateBars();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         initMenuDrawer();
-        populateBars();
+        updateFilters();
     }
 
     public void populateBars() {
@@ -124,16 +124,14 @@ public class MainActivity extends AppCompatActivity {
         List<Bar> filtered = new ArrayList<>();
         for(String s : bs){
             Bar b = Client.barMap.get(s);
-            int add = 1;
+            boolean add = true;
             for(String f : activeFilters){
                 if(!(b.tags.contains(f) && !filtered.contains(b)))
-                    add = 0;
+                    add = false;
             }
-            if(add == 1)
+            //search on bar name if you want
+            if(add && b.barName.toLowerCase().contains(query.toLowerCase()))
                 filtered.add(b);
-            /*if(activeFilters.isEmpty()) {
-                filtered.add(b);
-            }*/
         }
         adapter.updateBars(filtered);
     }
@@ -160,27 +158,15 @@ public class MainActivity extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                Set<String> bs = Client.barMap.keySet();
-                List<Bar> filteredBySearchValue = new ArrayList<>();
-                for(String s : bs){
-                    Bar b = Client.barMap.get(s);
-                    if(b.barName.toLowerCase().contains(query.toLowerCase()))
-                        filteredBySearchValue.add(b);
-                }
-                adapter.updateBars(filteredBySearchValue);
+            public boolean onQueryTextSubmit(String q) {
+                query = q;
+                updateFilters();
                 return false;
             }
             @Override
-            public boolean onQueryTextChange(String newText) {
-                Set<String> bs = Client.barMap.keySet();
-                List<Bar> filteredBySearchValue = new ArrayList<>();
-                for(String s : bs){
-                    Bar b = Client.barMap.get(s);
-                    if(b.barName.toLowerCase().contains(newText.toLowerCase()))
-                        filteredBySearchValue.add(b);
-                }
-                adapter.updateBars(filteredBySearchValue);
+            public boolean onQueryTextChange(String q) {
+                query = q;
+                updateFilters();
                 return false;
             }
         });
@@ -194,11 +180,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if (swipeContainer.isRefreshing())
             swipeContainer.setRefreshing(false);
-    }
-
-    private List<Bar> applyFilter(Collection<Bar> nonFilteredBarMap) {
-        List<Bar> barList = new ArrayList<>(nonFilteredBarMap);
-        return barList;
     }
 
     //Handles if the nav drawerLayout button is pressed
@@ -216,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(actionbar).setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         NavigationView nv = findViewById(R.id.nav_main);
