@@ -1,7 +1,5 @@
 package com.example.litness.litness;
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,9 @@ public class Bar {
     public List<Review> reviews = new ArrayList<>();
 
     //will store from Sun-Sat
-    public ArrayList<Day> days = new ArrayList<>();
+    public List<Day> days = new ArrayList<>();
+
+    public List<Menu> menu = new ArrayList<>();
 
     //list will store event
     public static class Day {
@@ -36,5 +36,15 @@ public class Bar {
         public String rating = "";
         public String text = "";
         public long timestamp = System.currentTimeMillis();
+    }
+
+    public static class Menu {
+        public List<Item> food = new ArrayList<>();
+        public List<Item> drinks = new ArrayList<>();
+    }
+
+    public static class Item {
+        public String item;
+        public int price;
     }
 }

@@ -22,7 +22,7 @@ public class ImageDialog extends AlertDialog {
     private ImageButton rightButton;
 
     public ImageDialog(Context c, List<Integer> d, int i) {
-        super(c);
+        super(c, R.style.DialogTheme);
         ctx = c;
         data = d;
         index = i;

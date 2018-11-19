@@ -6,8 +6,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 
+import com.example.litness.litness.Client;
 import com.example.litness.litness.Interface;
 import com.example.litness.litness.R;
 
@@ -39,6 +41,11 @@ public class CheckInDialog extends AlertDialog{
         coverOver = findViewById(R.id.checkindialog_input_coverover);
         coverUnder = findViewById(R.id.checkindialog_input_coverunder);
         wait = findViewById(R.id.checkindialog_input_wait);
+
+        sb.setProgress(Integer.parseInt(Client.activeBar.litness));
+        coverOver.setHint(Client.activeBar.coverOver);
+        coverUnder.setHint(Client.activeBar.coverUnder);
+        wait.setHint(Client.activeBar.wait);
 
         Objects.requireNonNull((View) findViewById(R.id.checkindialog_button_checkin)).setOnClickListener(x -> {
             dismiss();
