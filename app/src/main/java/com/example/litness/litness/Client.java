@@ -544,6 +544,56 @@ public class Client extends AppCompatActivity {
         barMap.put(bar.barName,bar);
         //End Wheelhouse
 
+        //Rhythm and Brews
+        bar = new Bar();
+        bar.barName = "Rhythm & Brews";
+        bar.coverOver = "$5";
+        bar.wait = "5 Minutes";
+        bar.phone = "(205) 248-7181";
+        bar.address = "2308 4th St, Tuscaloosa, AL 35401";
+        bar.description = "Great bar for dancing and watching live bands.  Also has a mechanical bull";
+        bar.tags.add("All Bars");
+        bar.litness = "3";
+        bar.rating = "3.9";
+
+        today = new Day();
+        today.day = "Wednesday";
+        today.events.add("Live Band");
+        today.specials.add("$4 Wells");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Saturday";
+        today.events.add("Live Band");
+        today.specials.add("$3 Bud Lights");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Single Wells", 6));
+        bar.menu.drinks.add(new Item("Bud Light", 4));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+        bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Always fun watching friends ride the bull. Fun place to swing dance";
+        review.user = "Peyton Manning";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Love the band they had playing when I went.  Sweet Home Alabama is always a banger";
+        review.user = "Joe Nammath";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "3";
+        review.text = "Not really a swing dance type of guy, but it was still fun to listen to music.";
+        review.user = "Tom Brady";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //End Rhythm and Brews
+
         bar = new Bar();
         bar.barName = "Rounders2";
         bar.coverOver = "$10";
