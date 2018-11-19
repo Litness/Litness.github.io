@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
 import com.example.litness.litness.Dialog.LoginDialog;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private BarCardAdapter adapter;
 
-    private Menu menu;
+    private Menu searchMenu;
+    private Menu sortMenu;
     ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
     private String query = "";
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(this::actionSwipeRefresh);
 
         populateBars();
+
     }
 
     @Override
@@ -138,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //inflate sort menu
+        getMenuInflater().inflate(R.menu.sort_menu, menu);
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.input_filter);
@@ -187,8 +193,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.sortmenu_AZ:
+                Toast.makeText(this,"AZ",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_ZA:
+                Toast.makeText(this,"ZA",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_HL:
+                Toast.makeText(this,"HL",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sortmenu_LH:
+                Toast.makeText(this,"LH",Toast.LENGTH_SHORT).show();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void initMenuDrawer() {
         drawerLayout = findViewById(R.id.drawer_main);
@@ -203,17 +227,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationView nv = findViewById(R.id.nav_main);
         View header = nv.getHeaderView(0);
 
-        menu = nv.getMenu();
+        searchMenu = nv.getMenu();
 
         //sets the header view
         if(Client.currentUserName.equals("")) {
             header.findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
-            menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Login");
         }
         else {
             header.findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
             ((TextView) header.findViewById(R.id.maindrawer_name)).setText(Client.currentUserName);
-            menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
+            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Logout");
         }
 
         nv.setNavigationItemSelectedListener(item -> {
@@ -223,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 if(Client.currentUserName.equals("")) {
                     new LoginDialog(this, x->{
                         Client.currentUserName = x;
-                        menu.findItem(R.id.menuLoginLogout).setTitle("Logout");
+                        searchMenu.findItem(R.id.menuLoginLogout).setTitle("Logout");
                         findViewById(R.id.maindrawer_view).setVisibility(View.VISIBLE);
                         ((TextView)findViewById(R.id.maindrawer_name)).setText(x);
                     }).show();
@@ -235,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onYesClicked() {
                             deleteLoginInfo();
                             findViewById(R.id.maindrawer_view).setVisibility(View.INVISIBLE);
-                            menu.findItem(R.id.menuLoginLogout).setTitle("Login");
+                            searchMenu.findItem(R.id.menuLoginLogout).setTitle("Login");
                         }
                         @Override
                         public void onNoClicked() {
