@@ -82,8 +82,8 @@ public class Client extends AppCompatActivity {
         bar.days.add(today);
 
         Review review = new Review();
-        review.rating = "3";
-        review.text = "This is a nice bar with a chill environment I'd recommend it to my friends";
+        review.rating = "5";
+        review.text = "SO MUCH FUN!!! LOUD AND GOOD DRINKS";
         review.user = "James Frank";
         bar.reviews.add(review);
 
@@ -99,15 +99,6 @@ public class Client extends AppCompatActivity {
         bar.tags.add("Under 21");
         bar.tags.add("All Bars");
 
-        bar.menu.food.add(new Item("Burger", 5));
-        bar.menu.food.add(new Item("Fries", 3));
-        bar.menu.food.add(new Item("Sandwich", 5));
-        bar.menu.food.add(new Item("Fish", 8));
-        bar.menu.food.add(new Item("Burger", 5));
-        bar.menu.food.add(new Item("Fries", 3));
-        bar.menu.food.add(new Item("Sandwich", 5));
-        bar.menu.food.add(new Item("Fish", 8));
-
         bar.menu.drinks.add(new Item("Bud Light", 3));
         bar.menu.drinks.add(new Item("Trim Tab IPA", 4));
         bar.menu.drinks.add(new Item("Good People Pale Ale", 4));
@@ -118,62 +109,440 @@ public class Client extends AppCompatActivity {
         bar.menu.drinks.add(new Item("Trim Tab Paradise Now", 4));
 
         barMap.put(bar.barName,bar);
+        //End Rounders
 
-
-
-        //Temporary so more are being populated
+        //Loosa Info
         bar = new Bar();
-        bar.barName = "Calm Bar";
-        bar.coverOver = "$10";
-        bar.wait = "10 Minutes";
-        bar.phone = "(205) 252-1213";
-        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
-        bar.tags.add("Bars with Food");
+        bar.barName = "Loosa Bar";
+        bar.coverOver = "0";
+        bar.wait = "No wait";
+        bar.phone = "(205) 737-7440";
+        bar.address = "412 20th Ave, Tuscaloosa, AL 35401";
+        bar.description = "A nice chill bar with a large assortment of beer selections.  Offers games like Mario Kart, Pinball, Ping Pong, board games, and even guitars that you can play.";
+        bar.tags.add("Brewery");
         bar.tags.add("All Bars");
         bar.litness ="2";
+        bar.rating = "4.2";
 
-        today = new Day();
-        today.events.add("Test");
-        today.specials.add("Test Pass");
-        bar.days.add(today);
+        review = new Review();
+        review.rating = "5";
+        review.text = "This is a nice bar with a chill environment I'd recommend it to my friends";
+        review.user = "Sam Cler";
+        bar.reviews.add(review);
 
-        barMap.put(bar.barName,bar);
-
-        bar = new Bar();
-        bar.barName = "Rounders1";
-        bar.coverOver = "$10";
-        bar.wait = "10 Minutes";
-        bar.litness = "3";
-        bar.phone = "(205) 252-1213";
-        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
-        bar.description = "This bar is a chill place with a lot of good beer and hot women";
-        bar.tags.add("Night Clubs");
-        bar.tags.add("All Bars");
-
-        today = new Day();
-        today.events.add("Test");
-        today.specials.add("Test Pass");
-        bar.days.add(today);
+        bar.menu.drinks.add(new Item("Cahaba Blood Orange", 5));
+        bar.menu.drinks.add(new Item("Trim Tab IPA", 6));
+        bar.menu.drinks.add(new Item("Good People Pale Ale", 6));
+        bar.menu.drinks.add(new Item("Trim Tab Paradise Now", 5));
+        bar.menu.drinks.add(new Item("Good People Strawberry Kiwi", 5));
+        bar.menu.drinks.add(new Item("Cahaba Imperial Stout", 6));
+        bar.menu.drinks.add(new Item("Good People Golden Ale", 5));
+        bar.menu.drinks.add(new Item("Good People Irish Stout", 4));
 
         barMap.put(bar.barName,bar);
+        //End Loosa
 
+        //Innisfree
         bar = new Bar();
-        bar.barName = "Calm Bar1";
-        bar.coverOver = "$10";
-        bar.wait = "10 Minutes";
-        bar.phone = "(205) 252-1213";
-        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
+        bar.barName = "Innisfree";
+        bar.coverOver = "$5";
+        bar.wait = "5 Minutes";
+        bar.litness = "4";
+        bar.phone = "(205) 345-1199";
+        bar.address = "1925 University Blvd, Tuscaloosa, AL 35401";
+        bar.description = "Fun Irish pub with good outdoor venue and a pool table";
         bar.tags.add("Bars with Food");
         bar.tags.add("All Bars");
-        bar.litness = "1";
+        bar.rating = "4.0";
 
         today = new Day();
-        today.events.add("Test");
-        today.specials.add("Test Pass");
+        today.day = "Sunday";
+        today.specials.add("$5 Bud Light Pitchers");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Monday";
+        today.specials.add("$5 Bud Light Pitchers");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Tuesday";
+        today.specials.add("$5 Bud Light Pitchers");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Wednesday";
+        today.events.add("Wine Wednesday");
+        today.specials.add("$2 Glasses of Wine");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Thursday";
+        today.events.add("Thirsty Thursday");
+        today.specials.add("1/2 Priced Irish Car Bombs");
+        today.specials.add("$5 Bud Light Pitchers");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Friday";
+        today.specials.add("$2 Bud Lights");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Saturday";
+        today.specials.add("$2 Bud Lights");
+        bar.days.add(today);
+
+        review = new Review();
+        review.rating = "2";
+        review.text = "Expensive cover and warm beer";
+        review.user = "Paul Bremer";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "They played MO BAMBA!!!!";
+        review.user = "Mike Norman";
+        bar.reviews.add(review);
+
+        bar.menu.food.add(new Item("Burger", 5));
+        bar.menu.food.add(new Item("Fries", 3));
+        bar.menu.food.add(new Item("Fish and Chips", 9));
+        bar.menu.food.add(new Item("Nachos", 7));
+
+        bar.menu.drinks.add(new Item("Single Wells", 8));
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+        bar.menu.drinks.add(new Item("Yellow Hammers", 8));
+        bar.menu.drinks.add(new Item("Lemon Drop Shots", 3));
+        bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+
+        barMap.put(bar.barName,bar);
+        //End Innisfree
+
+        //Galletes Bar
+        bar = new Bar();
+        bar.barName = "Galletes";
+        bar.coverOver = "$10";
+        bar.wait = "20 Minutes";
+        bar.phone = "N/A";
+        bar.address = "1104 6th St, Tuscaloosa, AL 35401";
+        bar.description = "Funnest 21+ bar in town.  Front room with large screen and back club room for dancing.";
+        bar.tags.add("Night Clubs");
+        bar.tags.add("All Bars");
+        bar.litness = "5";
+        bar.rating = "5";
+
+        today = new Day();
+        today.day = "Wednesday";
+        today.events.add("Wine Wednesday");
+        today.specials.add("$5 Bottles of Wine");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Thursday";
+        today.events.add("Thirsty Thursday");
+        today.specials.add("$3 32oz Wells");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Friday";
+        today.events.add("DJ Huckleberry Spin");
+        today.specials.add("$5 32oz Wells");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Saturday";
+        today.events.add("DJ Huckleberry Spin");
+        today.specials.add("$5 32oz Wells");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Single Wells", 8));
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+        bar.menu.drinks.add(new Item("Yellow Hammers", 8));
+        bar.menu.drinks.add(new Item("Lemon Drop Shots", 3));
+        bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Back room was lit! DJ Huckleberry Spin is the man!";
+        review.user = "Mason Goomes";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "The yellow hammers were amazing.  Bar was a little too crowded";
+        review.user = "Jake Groeber";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Back room was lit! DJ Huckleberry Spin is the man!";
+        review.user = "Mason Goomes";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //End Galletes
+
+        //Egans
+        bar = new Bar();
+        bar.barName = "Egans";
+        bar.coverOver = "";
+        bar.wait = "";
+        bar.phone = "(205) 758-9413";
+        bar.address = "1229 University Blvd, Tuscaloosa, AL 35401";
+        bar.description = "Weird bar for older people of Tuscaloosa.";
+        bar.tags.add("All Bars");
+        bar.litness = "1";
+        bar.rating = "1";
+
+        today = new Day();
+        today.day = "Friday";
+        today.events.add("Random Band");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Saturday";
+        today.events.add("Another Band");
         bar.days.add(today);
 
 
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+        bar.menu.drinks.add(new Item("Coors Light", 4));
+        bar.menu.drinks.add(new Item("Keystone", 4));
+
+        review = new Review();
+        review.rating = "1";
+        review.text = "Bar is filled with smoke and is too dark";
+        review.user = "Noah Gleason";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "1";
+        review.text = "Not a bar for the younger crowd";
+        review.user = "Keegan Majers";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "1";
+        review.text = "Only people older than 30";
+        review.user = "Rob Harrington";
+        bar.reviews.add(review);
+
         barMap.put(bar.barName,bar);
+        //End Egans
+
+        //Houndstooth
+        bar = new Bar();
+        bar.barName = "Houndstooth";
+        bar.coverOver = "0";
+        bar.wait = "0";
+        bar.phone = "(205) 752-8444";
+        bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
+        bar.description = "Longtime collegial hangout offering darts & pool tables, plus an outdoor patio & sports on many TVs..";
+        bar.tags.add("All Bars");
+        bar.tags.add("Outdoor Venue");
+        bar.litness = "2";
+        bar.rating = "4.3";
+
+        today = new Day();
+        today.day = "Thursday";
+        today.events.add("Bingo Night");
+        today.specials.add("$2 Bud Lights");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Single Wells", 8));
+        bar.menu.drinks.add(new Item("Bud Light", 4));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+        bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+        bar.menu.drinks.add(new Item("Blue Guys", 6));
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Bingo Night was fun.  I won $25 to Olive Garden";
+        review.user = "Mason Groomes";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Fun place to hangout with friends and play pool";
+        review.user = "Bryan Heath";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Love the outside seating";
+        review.user = "Jake Mizzell";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //Houndstooth End
+
+        //Jackies
+        bar = new Bar();
+        bar.barName = "Jackies";
+        bar.coverOver = "Never";
+        bar.wait = "Never";
+        bar.phone = "(205) 758-9179";
+        bar.address = "2111 Paul W. Bryant Dr, Tuscaloosa, AL 35401";
+        bar.description = "Local bar famous for karoake";
+        bar.tags.add("All Bars");
+        bar.litness = "2";
+        bar.rating = "3.5";
+
+        today = new Day();
+        today.day = "Monday";
+        today.events.add("Free Pool");
+        today.specials.add("$3.75 Wells");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Thursday";
+        today.events.add("Karoake Night");
+        today.specials.add("$2 Bud Lights");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Single Wells", 8));
+        bar.menu.drinks.add(new Item("Bud Light", 4));
+        bar.menu.drinks.add(new Item("Miller Light", 4));
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Love the karoake!";
+        review.user = "Mason Groomes";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "2";
+        review.text = "Whole place smells like smoke";
+        review.user = "Scott Smith";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Can't beat free pool!";
+        review.user = "Mike Norman";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //End Jackies
+
+        //Moes Barbecue
+        bar = new Bar();
+        bar.barName = "Moe's Original BBQ";
+        bar.coverOver = "$5";
+        bar.wait = "None";
+        bar.phone = "(205) 752-3616";
+        bar.address = "2101 University Blvd, Tuscaloosa, AL 35401";
+        bar.description = "Easygoing chain serving Alabama-style pulled pork & other meats smoked in-house.  Fun and chill bar";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("Outdoor Venue");
+        bar.tags.add("All Bars");
+        bar.litness = "3";
+        bar.rating = "4.1";
+
+        today = new Day();
+        today.day = "Monday";
+        today.events.add("Moe's Monday");
+        today.events.add("Bingo");
+        today.specials.add("50c Wings");
+        today.specials.add("$10 Beer Towers");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Tuesday";
+        today.events.add("Tequila Tuesday");
+        today.specials.add("$1 Tequila Shots");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Thursday";
+        today.specials.add("1/2 priced Bushwackers");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Single Wells", 6));
+        bar.menu.drinks.add(new Item("Bud Light", 3));
+        bar.menu.drinks.add(new Item("Miller Light", 3));
+        bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+        bar.menu.drinks.add(new Item("Bushwacker", 7));
+
+        bar.menu.food.add(new Item("Pulled Pork", 10));
+        bar.menu.food.add(new Item("Pulled Chicken", 9));
+        bar.menu.food.add(new Item("Wing Plate", 10));
+        bar.menu.food.add(new Item("Brisket", 12));
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Best wings in town!  The bushwackers are amazing too";
+        review.user = "Mason Goomes";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.text = "Good bar for a chill night out with the boys";
+        review.user = "Jake Groeber";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "3";
+        review.text = "There was no dancing";
+        review.user = "Mike Norman";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //Moes Barbecue
+
+        //Wheelhouse
+        bar = new Bar();
+        bar.barName = "The Wheelhouse Pub";
+        bar.coverOver = "None";
+        bar.wait = "None";
+        bar.phone = "(205) 535-5933";
+        bar.address = "2326 4th St, Tuscaloosa, AL 35401";
+        bar.description = "Fun bar with pool tables, darts, ski ball, basketball, and more.";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("All Bars");
+        bar.litness = "2";
+        bar.rating = "3.7";
+
+        today = new Day();
+        today.day = "Friday";
+        today.events.add("Live Band");
+        bar.days.add(today);
+
+        bar.menu.drinks.add(new Item("Domestics", 4));
+        bar.menu.drinks.add(new Item("Imports", 5));
+        bar.menu.drinks.add(new Item("Wells", 5);
+        bar.menu.drinks.add(new Item("Calls", 6));
+
+        bar.menu.food.add(new Item("Pizza", 5));
+        bar.menu.food.add(new Item("Smoked Chicken", 9));
+        bar.menu.food.add(new Item("Chicken Bacon Ranch", 8));
+        bar.menu.food.add(new Item("Wings Small", 8));
+        bar.menu.food.add(new Item("Wings Large", 13));
+
+        review = new Review();
+        review.rating = "3";
+        review.text = "Love all the fun games but not much going on besides that";
+        review.user = "Amari Cooper";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "5";
+        review.text = "Amari is just mad I can punch harder than him according the punching bag game.  Love this place";
+        review.user = "Damien Harris";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "3";
+        review.text = "Just an average bar in Tuscaloosa";
+        review.user = "Tua Tag";
+        bar.reviews.add(review);
+
+        barMap.put(bar.barName,bar);
+        //End Wheelhouse
 
         bar = new Bar();
         bar.barName = "Rounders2";
