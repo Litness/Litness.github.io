@@ -110,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
         tvNoBars = findViewById(R.id.main_alt_nobars);
 
+        //initMenuDrawer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initMenuDrawer();
     }
 

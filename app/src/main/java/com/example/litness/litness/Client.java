@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 
 import com.example.litness.litness.Bar.Day;
+import com.example.litness.litness.Bar.Review;
+
 
 import java.io.File;
 import java.util.HashMap;
@@ -61,12 +63,12 @@ public class Client extends AppCompatActivity {
         today = new Day();
         today.day = "Wednesday";
         today.events.add("Midweek Mania: DJ Snake");
-        today.specials.add("Half-priced shots");
+        //today.specials.add("Half-priced shots");
         bar.days.add(today);
 
         today = new Day();
         today.day = "Friday";
-        today.events.add("Travis Scott");
+        //today.events.add("Travis Scott");
         today.specials.add("$1 Ladies' Drinks");
         bar.days.add(today);
 
@@ -77,8 +79,11 @@ public class Client extends AppCompatActivity {
         today.specials.add("$5 Mixed Drinks");
         bar.days.add(today);
 
-        //Review review = new Review;
-
+        Review review = new Review();
+        review.rating = "3";
+        review.text = "This is a nice bar with a chill environment i'd recommend it to my friends";
+        review.user = "James Frank";
+        bar.reviews.add(review);
 
         bar.photos.add(R.drawable.img_rounders0);
         bar.photos.add(R.drawable.img_rounders1);

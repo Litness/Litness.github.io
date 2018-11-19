@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.litness.litness.Dialog.CheckInDialog;
 import com.example.litness.litness.Dialog.DayDialog;
+import com.example.litness.litness.Dialog.LoginDialog;
+import com.example.litness.litness.Dialog.ReviewDialog;
 
 import java.util.Date;
 import java.util.List;
@@ -35,15 +37,21 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         refreshLayout();
 
-        findViewById(R.id.bar_button_checkin).setOnClickListener(v-> new CheckInDialog(this, this::updateLitness).show() );
+        findViewById(R.id.bar_button_checkin).setOnClickListener(v-> {
+            if(Client.currentUserName.equals(""))
+                new LoginDialog(this, x-> {
+                    new CheckInDialog(this, this::updateLitness).show();
+                    Client.currentUserName = x;
+                }).show();
+            else
+                new CheckInDialog(this, this::updateLitness).show();
+        } );
 
         findViewById(R.id.bar_alt_phone).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ b.phone))));
 
         findViewById(R.id.bar_alt_address).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(b.address) + b.barName))));
 
-        findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> {
-            new DayDialog(this).show();
-             });
+        findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> new DayDialog(this).show());
 
         findViewById(R.id.bar_card_food_drink).setOnClickListener(v-> {
             Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show();
@@ -53,9 +61,7 @@ public class BarDisplayActivity extends AppCompatActivity {
             Toast.makeText(this, "Photos", Toast.LENGTH_SHORT).show();
         });
 
-        findViewById(R.id.bar_card_reviews).setOnClickListener(v->{
-
-        });
+        findViewById(R.id.bar_card_reviews).setOnClickListener(v-> new ReviewDialog(this).show());
     }
 
     private void refreshLayout() {
@@ -92,15 +98,6 @@ public class BarDisplayActivity extends AppCompatActivity {
             img.setImageResource(i);
             pics.addView(v);
         }
-
-/*        LinearLayout pics = findViewById(R.id.bar_gallery);
-        for(Bitmap b: b.p) {
-            int layout = R.layout.adapter_pics;
-            View v = getLayoutInflater().inflate(layout, null, false);
-            ImageView img = v.findViewById(R.id.adapter_image);
-            img.setImageBitmap(b);
-            pics.addView(v);
-        }*/
 
 
         ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));

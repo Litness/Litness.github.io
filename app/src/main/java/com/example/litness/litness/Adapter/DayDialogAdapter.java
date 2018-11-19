@@ -41,10 +41,53 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
     public void onBindViewHolder(@NonNull CardDialogViewHolder holder, int position) {
         Day d = data.get(position);
         holder.tvTitle.setText(d.day);
-        for(String s : d.events)
-            holder.tvText1.setText(s);
-        for(String s : d.specials)
-            holder.tvText2.setText(s);
+        StringBuilder sb = new StringBuilder();
+        String prefix = "";
+        for (int i=0; i<d.events.size(); i++) {
+            sb.append(prefix);
+            prefix = ", ";
+            //makes the last thing have an and
+            if (i == d.events.size() - 2)
+                prefix = ", and ";
+            if (d.events.size() == 2)
+                prefix = " and ";
+            sb.append(d.events.get(i));
+        }
+        holder.tvText1.setText(sb);
+
+        //Change from events to event
+        if(d.events.size() == 1)
+            holder.tvLabel1.setText("Event");
+
+        //if there are no events hide them
+        if(d.events.size() == 0) {
+            holder.tvLabel1.setVisibility(View.GONE);
+            holder.tvText1.setVisibility(View.GONE);
+        }
+
+        sb = new StringBuilder();
+        prefix = "";
+        for (int i=0; i<d.specials.size(); i++) {
+            sb.append(prefix);
+            prefix = ", ";
+            //makes the last thing have an and
+            if (i == d.specials.size() - 2)
+                prefix = ", and ";
+            if (d.specials.size() == 2)
+                prefix = " and ";
+            sb.append(d.specials.get(i));
+        }
+        holder.tvText2.setText(sb);
+
+        //Change from specials to specials if there's one
+        if(d.specials.size() == 1)
+            holder.tvLabel2.setText("Special");
+
+        //if there are no specials hide them
+        if(d.specials.size() == 0) {
+            holder.tvLabel2.setVisibility(View.GONE);
+            holder.tvText2.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -55,14 +98,16 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
     class CardDialogViewHolder extends RecyclerView.ViewHolder{
 
         private CardView cardView;
-        private TextView tvTitle,tvText1, tvText2;
+        private TextView tvTitle, tvLabel1, tvLabel2, tvText1, tvText2;
 
         CardDialogViewHolder(View v) {
             super(v);
             cardView = v.findViewById(R.id.daydialog_card);
-            tvTitle = v.findViewById(R.id.dialogcard_alt_title);
-            tvText1 = v.findViewById(R.id.dialogcard_alt_1);
-            tvText2 = v.findViewById(R.id.dialogcard_alt_2);
+            tvTitle = v.findViewById(R.id.daycard_alt_title);
+            tvLabel1 = v.findViewById(R.id.daycard_label_1);
+            tvLabel2 = v.findViewById(R.id.daycard_label_2);
+            tvText1 = v.findViewById(R.id.daycard_alt_1);
+            tvText2 = v.findViewById(R.id.daycard_alt_2);
         }
     }
 

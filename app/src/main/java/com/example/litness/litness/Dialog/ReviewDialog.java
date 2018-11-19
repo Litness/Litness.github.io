@@ -5,16 +5,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.litness.litness.Adapter.DayDialogAdapter;
+import com.example.litness.litness.Adapter.ReviewDialogAdapter;
 import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
-public class DayDialog extends AlertDialog {
+public class ReviewDialog extends AlertDialog {
 
     private Context ctx;
-    private DayDialogAdapter adapter;
+    private ReviewDialogAdapter adapter;
 
-    public DayDialog(Context c) {
+    public ReviewDialog(Context c) {
         super(c);
         ctx = c;
     }
@@ -22,16 +22,17 @@ public class DayDialog extends AlertDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_day);
+        setContentView(R.layout.dialog_review);
 
-        RecyclerView rv = findViewById(R.id.daydialog_rv);
+        RecyclerView rv = findViewById(R.id.reviewdialog_rv);
 
-        adapter = new DayDialogAdapter(ctx);
+        adapter = new ReviewDialogAdapter(ctx);
         rv.setAdapter(adapter);
 
-        adapter.updateDays(Client.activeBar.days);
+        adapter.updateReviews(Client.activeBar.reviews);
 
-        findViewById(R.id.daydialog_button_close).setOnClickListener(x->
+        findViewById(R.id.reviewdialog_button_close).setOnClickListener(x->
                 dismiss());
     }
 }
+
