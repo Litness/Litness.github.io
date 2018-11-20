@@ -88,14 +88,20 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
             holder.tvCover.setText(b.coverOver + " | " + b.coverUnder);
         else
             holder.tvCover.setText(b.coverOver);
+
         if(b.coverOver.equals("0")) {
             holder.tvCover.setText("No Cover");
             holder.tvCover.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperTextTransparent)));
         }
+        else
+            holder.tvCover.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperText)));
+
         if(b.wait.equals("")) {
             holder.tvWaitTime.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperTextTransparent)));
             holder.tvWaitTime.setText("No Wait");
         }
+        else
+            holder.tvWaitTime.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperText)));
 
         switch (b.litness) {
             case "1":

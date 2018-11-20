@@ -634,8 +634,6 @@ public class Client extends AppCompatActivity {
 
         //Moes Barbecue
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Moe's Original BBQ";
         bar.coverOver = "$5";
         bar.phone = "(205) 752-3616";
@@ -815,6 +813,123 @@ public class Client extends AppCompatActivity {
 
         barMap.put(bar.barName,bar);
         //End Rhythm and Brews
+
+
+        bar = new Bar();
+        bar.barName = "Pattys Pub";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Bars with Food");
+        bar.description = "This is the bar from the famous TV Show It's Always Sunny in Philadelphia";
+        bar.coverOver = "$5";
+        bar.coverUnder = "$10";
+        bar.wait = "25 Minutes";
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Original Heron Bistro";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Under 21");
+        bar.wait = "10 Minutes";
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Naughty Outlaw Beer Garden";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Breweries");
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Leaning Bicycle Brewpub";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Breweries");
+        bar.tags.add("Outdoor Venues");
+        bar.coverOver = "$5";
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Mighty Sidecar Speakeasy";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Night Clubs");
+        bar.coverOver = "$15";
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Crystal Tiger Brewhouse";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Outdoor Venues");
+        bar.tags.add("Bars with Food");
+        bar.tags.add("Under 21");
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Little Vibes Brewhouse";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Outdoor Venues");
+        bar.tags.add("Bars with Food");
+        bar.tags.add("Under 21");
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Hazy Bicycle Brewpub";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.tags.add("All Bars");
+        bar.tags.add("Bars with Food");
+        bar.tags.add("Under 21");
+        bar.wait = "15 Minutes";
+        barMap.put(bar.barName,bar);
+
+        bar = new Bar();
+        bar.barName = "Lazy Hedgehog Roadhouse";
+        bar.photos = defPhotos;
+        bar.livePhotos = defLive;
+        bar.days = defDay;
+        bar.menu = defMenu;
+        bar.reviews = defReviews;
+        bar.coverUnder = "$15";
+        bar.tags.add("All Bars");
+        bar.tags.add("Night Clubs");
+        bar.tags.add("Bars with Food");
+        bar.tags.add("Under 21");
+        barMap.put(bar.barName,bar);
     }
 
     private void launchFirstActivity() {

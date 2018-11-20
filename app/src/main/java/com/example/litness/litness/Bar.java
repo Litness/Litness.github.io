@@ -11,17 +11,17 @@ public class Bar {
     public String litness = "1";
     public String phone = "420-867-5309";
     public String address = "1600 Pennsylvania Avenue NW Washington, DC 20500";
-    public String description = "";
+    public String description = "This is a nice bar";
     public List<Integer> photos= new ArrayList<>();
     public List<Integer> livePhotos= new ArrayList<>();
-    public final List<String> tags = new ArrayList<>();
+    public List<String> tags = new ArrayList<>();
     public String rating = "3.5";
-    public final List<Review> reviews = new ArrayList<>();
+    public List<Review> reviews = new ArrayList<>();
 
     //will store from Sun-Sat
     public List<Day> days = new ArrayList<>();
 
-    public final Menu menu = new Menu();
+    public Menu menu = new Menu();
 
     //list will store event
     public static class Day {
