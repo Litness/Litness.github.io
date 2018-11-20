@@ -56,7 +56,10 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         findViewById(R.id.bar_alt_address).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(b.address) + b.barName))));
 
-        findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> new DayDialog(this).show());
+        if(b.days.size() != 0)
+            findViewById(R.id.bar_button_allspecials).setOnClickListener(v-> new DayDialog(this).show());
+        else
+            ((TextView) findViewById(R.id.bar_button_allspecials)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
 
         //Only set the listeners if things will exist
         if(b.menu.food.size() != 0 || b.menu.drinks.size() != 0)
@@ -120,15 +123,22 @@ public class BarDisplayActivity extends AppCompatActivity {
             findViewById(R.id.bar_card_description).setVisibility(View.GONE);
 
         //if there is no menu for this place
-        if(b.menu.food.size() == 0 && b.menu.drinks.size() == 0)
+        if(b.menu.food.size() == 0 && b.menu.drinks.size() == 0) {
             ((TextView) findViewById(R.id.bar_alt_menu)).setText("No Menu");
+            ((TextView) findViewById(R.id.bar_alt_menu)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
+        }
 
-        if(b.livePhotos.size() == 0)
+        if(b.livePhotos.size() == 0) {
             ((TextView) findViewById(R.id.bar_alt_livephotos)).setText("No Live Photos");
+            ((TextView) findViewById(R.id.bar_alt_livephotos)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
+
+        }
 
         if(b.reviews.size() == 0) {
             findViewById(R.id.bar_layout_rating).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.bar_alt_reviews)).setText("No Reviews");
+            ((TextView) findViewById(R.id.bar_alt_reviews)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
+
         }
 
     }

@@ -338,40 +338,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView5"
-                        android:text="No Events or Specials"
+                        android:text="No Events or Specials Today"
                         android:visibility="gone"/>
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/bar_button_checkin"
+                    <TextView
+                        android:id="@+id/bar_button_allspecials"
+                        style="@style/_HelperText_Lower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:stateListAnimator="@animator/button_anim"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="See all"
+                        android:textColor="@color/Primary"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.99"
-                        app:layout_constraintStart_toEndOf="@+id/bar_alt_cover_under"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:targetApi="lollipop">
-
-                        <TextView
-                            android:id="@+id/bar_button_allspecials"
-                            style="@style/_DarkButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="See All"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/textView5" />
-                    </android.support.v7.widget.CardView>
+                        app:layout_constraintStart_toEndOf="@+id/textView5" />
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.CardView>
