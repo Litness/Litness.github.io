@@ -9,11 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.litness.litness.Bar.Day;
 import com.example.litness.litness.Bar.Review;
 import com.example.litness.litness.Bar.Item;
+import com.example.litness.litness.Bar.Menu;
+
 
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Client extends AppCompatActivity {
 
@@ -34,6 +38,77 @@ public class Client extends AppCompatActivity {
     }
 
     private void populateBarMap() {
+        List <Integer> defPhotos = new ArrayList();
+        defPhotos.add(R.drawable.img_template0);
+        defPhotos.add(R.drawable.img_template1);
+        defPhotos.add(R.drawable.img_template2);
+        defPhotos.add(R.drawable.img_template3);
+
+        List<Integer> defLive = new ArrayList<>();
+        defLive.add(R.drawable.img_template_live0);
+        defLive.add(R.drawable.img_template_live1);
+        defLive.add(R.drawable.img_template_live2);
+
+        Menu defMenu = new Menu();
+        defMenu.drinks.add(new Item("Bud Light", 4));
+        defMenu.drinks.add(new Item("Coors", 4));
+        defMenu.drinks.add(new Item("Miller Lite", 4));
+        defMenu.drinks.add(new Item("Bud Light Platinum", 5));
+        defMenu.drinks.add(new Item("Black Warrior Crimson Ale", 5));
+        defMenu.food.add(new Item("Burger", 8));
+        defMenu.food.add(new Item("Fries", 2));
+        defMenu.food.add(new Item("Chicken Fingers", 8));
+        defMenu.food.add(new Item("Onion Rings", 3));
+
+        List<Review> defReviews = new ArrayList<>();
+        Review r = new Review();
+        r.user = "John Doe";
+        r.text = "Great place to meet friends";
+        r.rating = "3";
+        defReviews.add(r);
+        r = new Review();
+        r.user = "Jane Doe";
+        r.text = "I met my husband here!";
+        r.rating = "5";
+        defReviews.add(r);
+        r = new Review();
+        r.user = "Thomas Frank";
+        r.text = "I always come here after work for a pint";
+        r.rating = "5";
+        defReviews.add(r);
+
+        List<Day> defDay = new ArrayList<>();
+        Day d = new Day();
+        d.day = "Sunday";
+        d.events.add("Acoustic Band");
+        defDay.add(d);
+        d = new Day();
+        d.day = "Monday";
+        d.specials.add("$2 Shots");
+        defDay.add(d);
+        d = new Day();
+        d.day = "Tuesday";
+        d.specials.add("$3 Bud Lights");
+        d.events.add("Local Band");
+        defDay.add(d);d = new Day();
+        d.day = "Wednesday";
+        d.events.add("DJ");
+        defDay.add(d);d = new Day();
+        d.day = "Thursday";
+        d.specials.add("$3 Pitchers");
+        d.events.add("DJ");
+        defDay.add(d);d = new Day();
+        d.day = "Friday";
+        d.specials.add("$3 Pitchers");
+        d.events.add("DJ");
+        defDay.add(d);
+        d = new Day();
+        d.day = "Saturday";
+        d.specials.add("$4 Drafts");
+        d.events.add("Frank Hurts");
+        defDay.add(d);
+
+
 
         //Template for bar info input
         Bar bar = new Bar();
@@ -217,6 +292,92 @@ public class Client extends AppCompatActivity {
 
         barMap.put(bar.barName,bar);
         //End Innisfree
+
+        //Start Glory Bound
+        bar = new Bar();
+        bar.barName = "Glory Bound";
+        bar.litness = "1";
+        bar.phone = "(205) 349-0505";
+        bar.address = "1301 University Blvd Tuscaloosa, Alabama 35401";
+        bar.description = "Nice restaurant with Gyros and Pizzas";
+        bar.tags.add("Bars with Food");
+        bar.tags.add("All Bars");
+
+        bar.photos.add(R.drawable.img_glorybound0);
+        bar.photos.add(R.drawable.img_glorybound1);
+
+        bar.livePhotos.add(R.drawable.img_glorybound3);
+        bar.livePhotos.add(R.drawable.img_glorybound4);
+
+        today = new Day();
+        today.day = "Sunday";
+        today.specials.add("$2 Mimosas");
+        today.specials.add("$3 Bloody Mary's");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Monday";
+        today.specials.add("$3 Drafts 4:00-Close");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Tuesday";
+        today.specials.add("$5 Gyros");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Wednesday";
+        today.specials.add("$5 Salads");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Thursday";
+        today.specials.add("$5 Gyros with a College ID");
+        today.specials.add("$3 Drafts");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Friday";
+        today.specials.add("$3 Fusions");
+        bar.days.add(today);
+
+        today = new Day();
+        today.day = "Saturday";
+        today.specials.add("$2 Mimosas");
+        today.specials.add("$3 Bloody Mary's");
+        bar.days.add(today);
+
+        review = new Review();
+        review.rating = "4";
+        review.user = "Jeff Turner";
+        review.text = "Nice clean place. Food was good & courteous waitress!!";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "4";
+        review.user = "Cindy Shumpert";
+        review.text = "Service was good--Cole was our server. Food was delicious and price was good too.";
+        bar.reviews.add(review);
+
+        review = new Review();
+        review.rating = "2";
+        review.user = "Richard Wallace";
+        review.text = "Went to the restaurant tonight around 9:45 and the waitress and bartender refused to serve me despite not closing until 10:00 PM.";
+        bar.reviews.add(review);
+
+        bar.menu.drinks.add(new Item("Domestics", 4));
+        bar.menu.drinks.add(new Item("Imports", 5));
+        bar.menu.drinks.add(new Item("Wells", 5));
+        bar.menu.drinks.add(new Item("Calls", 6));
+
+        bar.menu.food.add(new Item("Pizza", 5));
+        bar.menu.food.add(new Item("Pepper Jack Gyro", 9));
+        bar.menu.food.add(new Item("Surf & Turf Gyro", 8));
+        bar.menu.food.add(new Item("House Salad", 8));
+        bar.menu.food.add(new Item("Bacon Egg and CHeese Gyro", 7));
+
+        barMap.put(bar.barName,bar);
+        //End Glory Bound
 
         //Galletes Bar
         bar = new Bar();
@@ -583,42 +744,7 @@ public class Client extends AppCompatActivity {
         barMap.put(bar.barName,bar);
         //End Rhythm and Brews
 
-        bar = new Bar();
-        bar.barName = "Rounders2";
-        bar.coverOver = "$10";
-        bar.wait = "10 Minutes";
-        bar.litness = "4";
-        bar.phone = "(205) 252-1213";
-        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
-        bar.description = "This bar is a chill place with a lot of good beer and hot women";
-        bar.tags.add("Night Clubs");
-        bar.tags.add("All Bars");
 
-        today = new Day();
-        today.events.add("Test");
-        today.specials.add("Test Pass");
-        bar.days.add(today);
-
-
-        barMap.put(bar.barName,bar);
-
-        bar = new Bar();
-        bar.barName = "Calm Bar2";
-        bar.coverOver = "$10";
-        bar.wait = "10 Minutes";
-        bar.phone = "(205) 252-1213";
-        bar.address = "12432 Test Street Tuscaloosa, AL 35404";
-        bar.tags.add("Bars with Food");
-        bar.tags.add("All Bars");
-        bar.litness = "5";
-
-        today = new Day();
-        today.events.add("Test");
-        today.specials.add("Test Pass");
-        bar.days.add(today);
-
-
-        barMap.put(bar.barName,bar);
     }
 
     private void launchFirstActivity() {
