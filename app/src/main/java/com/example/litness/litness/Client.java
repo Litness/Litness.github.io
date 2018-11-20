@@ -822,6 +822,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "5";
         bar.tags.add("All Bars");
         bar.tags.add("Bars with Food");
         bar.description = "This is the bar from the famous TV Show It's Always Sunny in Philadelphia";
@@ -837,6 +838,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "3";
         bar.tags.add("All Bars");
         bar.tags.add("Under 21");
         bar.wait = "10 Minutes";
@@ -860,6 +862,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "5";
         bar.tags.add("All Bars");
         bar.tags.add("Breweries");
         bar.tags.add("Outdoor Venues");
@@ -873,6 +876,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "3";
         bar.tags.add("All Bars");
         bar.tags.add("Night Clubs");
         bar.coverOver = "$15";
@@ -885,6 +889,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "4";
         bar.tags.add("All Bars");
         bar.tags.add("Outdoor Venues");
         bar.tags.add("Bars with Food");
@@ -898,6 +903,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "3";
         bar.tags.add("All Bars");
         bar.tags.add("Outdoor Venues");
         bar.tags.add("Bars with Food");
@@ -911,6 +917,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "3";
         bar.tags.add("All Bars");
         bar.tags.add("Bars with Food");
         bar.tags.add("Under 21");
@@ -924,6 +931,7 @@ public class Client extends AppCompatActivity {
         bar.days = defDay;
         bar.menu = defMenu;
         bar.reviews = defReviews;
+        bar.litness = "2";
         bar.coverUnder = "$15";
         bar.tags.add("All Bars");
         bar.tags.add("Night Clubs");
