@@ -477,7 +477,7 @@ public class Client extends AppCompatActivity {
 
         //Egans
         bar = new Bar();
-        bar.barName = "Egans";
+        bar.barName = "Egan's Bar";
         bar.phone = "(205) 758-9413";
         bar.address = "1229 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Weird bar for older people of Tuscaloosa.";
@@ -519,13 +519,17 @@ public class Client extends AppCompatActivity {
         review.user = "Rob Harrington";
         bar.reviews.add(review);
 
+        bar.photos.add(R.drawable.img_egans0);
+        bar.photos.add(R.drawable.img_egans1);
+        bar.photos.add(R.drawable.img_egans2);
+
+        bar.livePhotos.add(R.drawable.img_galletes0);
+
         barMap.put(bar.barName,bar);
         //End Egans
 
         //Houndstooth
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "The Houndstooth";
         bar.phone = "(205) 752-8444";
         bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
@@ -565,13 +569,18 @@ public class Client extends AppCompatActivity {
         review.user = "Jake Mizzell";
         bar.reviews.add(review);
 
+        bar.photos.add(R.drawable.img_houndstooth0);
+        bar.photos.add(R.drawable.img_houndstooth1);
+        bar.photos.add(R.drawable.img_houndstooth2);
+
+        bar.livePhotos.add(R.drawable.img_houndstooth3);
+        bar.livePhotos.add(R.drawable.img_houndstooth4);
+
         barMap.put(bar.barName,bar);
         //Houndstooth End
 
         //Jackies
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Jackie's Lounge";
         bar.phone = "(205) 758-9179";
         bar.address = "2111 Paul W. Bryant Dr, Tuscaloosa, AL 35401";
@@ -613,6 +622,12 @@ public class Client extends AppCompatActivity {
         review.text = "Can't beat free pool!";
         review.user = "Mike Norman";
         bar.reviews.add(review);
+
+        bar.photos.add(R.drawable.img_jackies0);
+        bar.photos.add(R.drawable.img_jackies1);
+
+        bar.livePhotos.add(R.drawable.img_jackies2);
+        bar.livePhotos.add(R.drawable.img_jackies3);
 
         barMap.put(bar.barName,bar);
         //End Jackies
@@ -680,13 +695,18 @@ public class Client extends AppCompatActivity {
         review.user = "Mike Norman";
         bar.reviews.add(review);
 
+        bar.livePhotos.add(R.drawable.img_moes0);
+        bar.livePhotos.add(R.drawable.img_moes1);
+        bar.livePhotos.add(R.drawable.img_moes2);
+
+        bar.photos.add(R.drawable.img_moes3);
+        bar.photos.add(R.drawable.img_moes4);
+
         barMap.put(bar.barName,bar);
         //Moes Barbecue
 
         //Wheelhouse
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "The Wheelhouse Pub";
         bar.phone = "(205) 535-5933";
         bar.address = "2326 4th St, Tuscaloosa, AL 35401";
@@ -730,13 +750,17 @@ public class Client extends AppCompatActivity {
         review.user = "Tua Tag";
         bar.reviews.add(review);
 
+        bar.photos.add(R.drawable.img_wheelhouse0);
+        bar.photos.add(R.drawable.img_wheelhouse1);
+        bar.photos.add(R.drawable.img_wheelhouse2);
+
+        bar.livePhotos.add(R.drawable.img_wheelhouse4);
+
         barMap.put(bar.barName,bar);
         //End Wheelhouse
 
         //Rhythm and Brews
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Rhythm & Brews";
         bar.coverOver = "$5";
         bar.wait = "5 Minutes";
@@ -782,6 +806,13 @@ public class Client extends AppCompatActivity {
         review.user = "Tom Brady";
         bar.reviews.add(review);
 
+        bar.photos.add(R.drawable.img_rhythm0);
+        bar.photos.add(R.drawable.img_rhythm1);
+        bar.photos.add(R.drawable.img_rhythm2);
+
+        bar.livePhotos.add(R.drawable.img_rhythm3);
+        bar.livePhotos.add(R.drawable.img_rhythm4);
+        
         barMap.put(bar.barName,bar);
         //End Rhythm and Brews
     }
