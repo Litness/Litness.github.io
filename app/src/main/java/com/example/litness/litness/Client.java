@@ -403,8 +403,6 @@ public class Client extends AppCompatActivity {
 
         //Galletes Bar
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Galletes";
         bar.coverOver = "$10";
         bar.wait = "20 Minutes";
@@ -465,6 +463,14 @@ public class Client extends AppCompatActivity {
         review.user = "Mason Goomes";
         bar.reviews.add(review);
 
+        bar.photos.add(R.drawable.img_galletes0);
+        bar.photos.add(R.drawable.img_galletes1);
+        bar.photos.add(R.drawable.img_galletes2);
+        bar.photos.add(R.drawable.img_galletes3);
+
+        bar.livePhotos.add(R.drawable.img_galletes4);
+        bar.livePhotos.add(R.drawable.img_galletes5);
+
         barMap.put(bar.barName,bar);
         //End Galletes
 
@@ -520,7 +526,7 @@ public class Client extends AppCompatActivity {
         bar.photos = defPhotos;
         bar.livePhotos = defLive;
         bar.days = defDay;
-        bar.barName = "Houndstooth";
+        bar.barName = "The Houndstooth";
         bar.phone = "(205) 752-8444";
         bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Longtime collegial hangout offering darts & pool tables, plus an outdoor patio & sports on many TVs..";
