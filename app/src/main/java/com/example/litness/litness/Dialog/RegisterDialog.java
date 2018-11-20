@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegisterDialog extends AlertDialog{
+class RegisterDialog extends AlertDialog{
 
-    private Interface.WithStringListListener listener;
+    private final Interface.WithStringListListener listener;
 
     private EditText email, pass0, pass1;
 

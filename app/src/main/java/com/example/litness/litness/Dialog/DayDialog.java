@@ -11,8 +11,7 @@ import com.example.litness.litness.R;
 
 public class DayDialog extends AlertDialog {
 
-    private Context ctx;
-    private DayDialogAdapter adapter;
+    private final Context ctx;
 
     public DayDialog(Context c) {
         super(c);
@@ -26,7 +25,7 @@ public class DayDialog extends AlertDialog {
 
         RecyclerView rv = findViewById(R.id.daydialog_rv);
 
-        adapter = new DayDialogAdapter(ctx);
+        DayDialogAdapter adapter = new DayDialogAdapter(ctx);
         rv.setAdapter(adapter);
 
         adapter.updateDays(Client.activeBar.days);

@@ -38,7 +38,7 @@ public class Client extends AppCompatActivity {
     }
 
     private void populateBarMap() {
-        List <Integer> defPhotos = new ArrayList();
+        List <Integer> defPhotos = new ArrayList<>();
         defPhotos.add(R.drawable.img_template0);
         defPhotos.add(R.drawable.img_template1);
         defPhotos.add(R.drawable.img_template2);
@@ -781,7 +781,7 @@ public class Client extends AppCompatActivity {
     }
 
     private void launchFirstActivity() {
-        if (preferenceFileExist("Login"))
+        if (preferenceFileExist())
             getLogin();
         //if it doesn't exist you can keep the client username as null
         else
@@ -789,8 +789,8 @@ public class Client extends AppCompatActivity {
 
     }
 
-    public boolean preferenceFileExist(String fileName) {
-        return new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + fileName + ".xml").exists();
+    private boolean preferenceFileExist() {
+        return new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/Login.xml").exists();
     }
 
     private void getLogin() {

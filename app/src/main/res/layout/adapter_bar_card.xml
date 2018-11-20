@@ -26,7 +26,6 @@
             <android.support.constraint.Guideline
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/barcard_guideline"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.75"/>
 

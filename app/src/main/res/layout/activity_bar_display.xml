@@ -102,7 +102,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/bar_litness"
                 app:layout_constraintBottom_toBottomOf="@+id/barrier"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="lollipop">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -158,7 +159,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bar_card_top">
+                app:layout_constraintTop_toBottomOf="@+id/bar_card_top"
+                tools:targetApi="lollipop">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -194,7 +196,8 @@
                         android:text=" | 18-20 "
                         android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@id/bar_alt_cover_over"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="4dp" />
                     <TextView
                         android:id="@+id/bar_alt_cover_under"
                         style="@style/_HelperText_Lower"
@@ -233,7 +236,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.99"
                         app:layout_constraintStart_toEndOf="@+id/bar_alt_cover_under"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:targetApi="lollipop">
 
                         <TextView
                             style="@style/_DarkButton"
@@ -264,7 +268,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bar_card_cover">
+                app:layout_constraintTop_toBottomOf="@+id/bar_card_cover"
+                tools:targetApi="lollipop">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -309,7 +314,6 @@
                     </HorizontalScrollView>
 
                     <HorizontalScrollView
-                        android:id="@+id/horiz2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -369,7 +373,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bar_card_specials">
+                app:layout_constraintTop_toBottomOf="@+id/bar_card_specials"
+                tools:targetApi="lollipop">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -443,7 +448,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/barrierBottom"
                     app:layout_constraintEnd_toEndOf="@id/guideline_vert1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/bar_alt_menu"
@@ -474,7 +480,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/barrierBottom"
                     app:layout_constraintEnd_toEndOf="@id/guideline_vert2"
                     app:layout_constraintStart_toStartOf="@id/guideline_vert1"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/bar_alt_livephotos"
@@ -505,7 +512,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/barrierBottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guideline_vert2"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop">
 
                     <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
@@ -529,7 +537,6 @@
                                 android:textSize="25sp" />
 
                             <TextView
-                                android:id="@+id/bar_label_rating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="/5"

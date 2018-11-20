@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
 
 import com.example.litness.litness.Client;
@@ -19,7 +18,7 @@ import java.util.Objects;
 
 public class CheckInDialog extends AlertDialog{
 
-    private Interface.WithStringListListener listener;
+    private final Interface.WithStringListListener listener;
 
     private SeekBar sb;
     private EditText coverOver, coverUnder, wait;

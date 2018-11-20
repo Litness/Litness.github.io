@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     private List<Item> data = new ArrayList<>();
 
     public ItemAdapter(Context c) {
@@ -49,7 +49,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvPrice, tvText;
+        private final TextView tvPrice;
+        private final TextView tvText;
 
         ItemViewHolder(View v) {
             super(v);
@@ -58,7 +59,4 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
     }
 
-    public List<Item> getData() {
-        return this.data;
-    }
 }

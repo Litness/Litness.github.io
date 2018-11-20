@@ -27,7 +27,7 @@ import java.util.List;
 
 public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     private List<Bar> data;
 
     public BarCardAdapter(Context c) {
@@ -125,10 +125,13 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
     class BarViewHolder extends RecyclerView.ViewHolder{
 
-        LinearLayout tagTainer;
-        private CardView cardContainer;
-        private TextView tvBarName, tvWaitTime, tvCover, tvNone;
-        private ImageView imgLit;
+        final LinearLayout tagTainer;
+        private final CardView cardContainer;
+        private final TextView tvBarName;
+        private final TextView tvWaitTime;
+        private final TextView tvCover;
+        private final TextView tvNone;
+        private final ImageView imgLit;
 
         BarViewHolder(View v) {
             super(v);
@@ -142,7 +145,4 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         }
     }
 
-    public List<Bar> getData() {
-        return this.data;
-    }
 }

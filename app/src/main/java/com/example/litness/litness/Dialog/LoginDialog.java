@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
-import com.example.litness.litness.Client;
 import com.example.litness.litness.Interface;
 import com.example.litness.litness.R;
 
@@ -19,8 +17,8 @@ import java.util.Objects;
 import static android.content.Context.MODE_PRIVATE;
 
 public class LoginDialog extends AlertDialog {
-    private Context ctx;
-    private Interface.WithStringListener listener;
+    private final Context ctx;
+    private final Interface.WithStringListener listener;
 
 
     public LoginDialog(Context c, Interface.WithStringListener listener) {

@@ -14,10 +14,10 @@ import com.example.litness.litness.R;
 
 import java.util.Objects;
 
-public class InputDialog extends AlertDialog{
+class InputDialog extends AlertDialog{
 
-    private String label;
-    private Interface.WithStringListener listener;
+    private final String label;
+    private final Interface.WithStringListener listener;
 
     public InputDialog(Context ctx, String label, Interface.WithStringListener listener) {
         super(ctx);

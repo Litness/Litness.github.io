@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class AddReviewDialog extends AlertDialog{
+class AddReviewDialog extends AlertDialog{
 
-    private String title;
-    private Interface.WithStringListListener listener;
+    private final String title;
+    private final Interface.WithStringListListener listener;
 
     public AddReviewDialog(Context ctx, String title, Interface.WithStringListListener listener) {
         super(ctx);

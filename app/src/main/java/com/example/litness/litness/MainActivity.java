@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private BarCardAdapter adapter;
 
     private Menu searchMenu;
-    ActionBarDrawerToggle drawerToggle;
+    private ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
     private String query = "";
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
-    List<String> activeFilters = new ArrayList<>();
+    private final List<String> activeFilters = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         updateBars();
     }
 
-    public void populateBars() {
+    private void populateBars() {
         activeFilters.add("All Bars");
         updateBars();
         LinearLayout ll = findViewById(R.id.main_container_filters);
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateBars(){
+    private void updateBars(){
         Set<String> bs = Client.barMap.keySet();
         List<Bar> filtered = new ArrayList<>();
         for(String s : bs){
@@ -137,14 +137,20 @@ public class MainActivity extends AppCompatActivity {
             if(add && b.barName.toLowerCase().contains(query.toLowerCase()))
                 filtered.add(b);
         }
-        if(sort.equals("AZ"))
-            Collections.sort(filtered, (b1, b2) -> b1.barName.compareTo(b2.barName));
-        else if(sort.equals("ZA"))
-            Collections.sort(filtered, (b1, b2) -> b2.barName.compareTo(b1.barName));
-        else if(sort.equals("LH"))
-            Collections.sort(filtered, (b1, b2) -> b2.coverOver.compareTo(b1.coverOver));
-        else if(sort.equals("HL"))
-            Collections.sort(filtered, (b1, b2) -> b1.coverOver.compareTo(b2.coverOver));
+        switch (sort) {
+            case "AZ":
+                Collections.sort(filtered, (b1, b2) -> b1.barName.compareTo(b2.barName));
+                break;
+            case "ZA":
+                Collections.sort(filtered, (b1, b2) -> b2.barName.compareTo(b1.barName));
+                break;
+            case "LH":
+                Collections.sort(filtered, (b1, b2) -> b2.coverOver.compareTo(b1.coverOver));
+                break;
+            case "HL":
+                Collections.sort(filtered, (b1, b2) -> b1.coverOver.compareTo(b2.coverOver));
+                break;
+        }
             adapter.updateBars(filtered);
     }
 
@@ -303,12 +309,13 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    private boolean deleteLoginInfo() {
+    private void deleteLoginInfo() {
         Client.currentUserName = "";
         //clear the shared preferences
         getSharedPreferences("Login", MODE_PRIVATE).edit().clear().apply();
 
         //remove the file
-        return new File(getApplicationInfo().dataDir + "/shared_prefs/Login.xml").delete();
+        //noinspection ResultOfMethodCallIgnored
+        new File(getApplicationInfo().dataDir + "/shared_prefs/Login.xml").delete();
     }
 }

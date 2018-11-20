@@ -12,8 +12,7 @@ import com.example.litness.litness.R;
 
 public class ReviewDialog extends AlertDialog {
 
-    private Context ctx;
-    private ReviewDialogAdapter adapter;
+    private final Context ctx;
 
     public ReviewDialog(Context c) {
         super(c);
@@ -27,22 +26,36 @@ public class ReviewDialog extends AlertDialog {
 
         RecyclerView rv = findViewById(R.id.reviewdialog_rv);
 
-        adapter = new ReviewDialogAdapter(ctx);
+        ReviewDialogAdapter adapter = new ReviewDialogAdapter(ctx);
         rv.setAdapter(adapter);
 
         adapter.updateReviews(Client.activeBar.reviews);
 
         findViewById(R.id.reviewdialog_button_add).setOnClickListener(x-> {
             dismiss();
-            new AddReviewDialog(ctx, "Add Review", r -> {
-                Review review = new Review();
-                review.text = r.get(0);
-                review.rating = r.get(1);
-                review.user = Client.currentUserName;
-                Client.activeBar.reviews.add(review);
-                new ReviewDialog(ctx).show();
-            }).show();
-
+            if(Client.currentUserName.equals("")) {
+                new LoginDialog(ctx, x1 -> {
+                    Client.currentUserName = x1;
+                    new AddReviewDialog(ctx, "Add Review", r -> {
+                        Review review = new Review();
+                        review.text = r.get(0);
+                        review.rating = r.get(1);
+                        review.user = Client.currentUserName;
+                        Client.activeBar.reviews.add(review);
+                        new ReviewDialog(ctx).show();
+                    }).show();
+                }).show();
+            }
+            else {
+                new AddReviewDialog(ctx, "Add Review", r -> {
+                    Review review = new Review();
+                    review.text = r.get(0);
+                    review.rating = r.get(1);
+                    review.user = Client.currentUserName;
+                    Client.activeBar.reviews.add(review);
+                    new ReviewDialog(ctx).show();
+                }).show();
+            }
         });
 
         findViewById(R.id.reviewdialog_button_close).setOnClickListener(x->

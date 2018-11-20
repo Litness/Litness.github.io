@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/colorForeground"
@@ -67,10 +68,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputdialog_input"
->
+            tools:targetApi="lollipop">
 
             <TextView
-                android:id="@+id/inputdialog_alt_button"
                 style="@style/_DarkButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputdialog_button_confirm" />
+                app:layout_constraintTop_toBottomOf="@+id/inputdialog_button_confirm"
+                tools:targetApi="lollipop" />
         </android.support.v7.widget.CardView>
 
 

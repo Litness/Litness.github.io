@@ -14,6 +14,7 @@ public class Interface {
     }
     public interface YesNoHandler{
         void onYesClicked();
+        @SuppressWarnings("EmptyMethod")
         void onNoClicked();
     }
 }
