@@ -43,6 +43,7 @@ public class Client extends AppCompatActivity {
         defPhotos.add(R.drawable.img_template1);
         defPhotos.add(R.drawable.img_template2);
         defPhotos.add(R.drawable.img_template3);
+        defPhotos.add(R.drawable.img_template4);
 
         List<Integer> defLive = new ArrayList<>();
         defLive.add(R.drawable.img_template_live0);
