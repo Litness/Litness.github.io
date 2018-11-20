@@ -519,7 +519,6 @@ public class Client extends AppCompatActivity {
         bar = new Bar();
         bar.photos = defPhotos;
         bar.livePhotos = defLive;
-        bar.days = defDay;
         bar.barName = "Houndstooth";
         bar.phone = "(205) 752-8444";
         bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
