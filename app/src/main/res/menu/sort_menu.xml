@@ -9,6 +9,9 @@
         android:title="Sort" >
             <menu>
                 <item
+                    android:id="@+id/sortmenu_distance"
+                    android:title="Distance" />
+                <item
                     android:id="@+id/sortmenu_AZ"
                     android:title="Name A-Z" />
                 <item
