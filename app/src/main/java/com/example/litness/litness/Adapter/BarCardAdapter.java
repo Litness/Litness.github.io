@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.example.litness.litness.Bar;
+import com.example.litness.litness.Bar.Day;
 import com.example.litness.litness.BarDisplayActivity;
 import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
@@ -50,19 +52,25 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         Bar b = data.get(position);
 
         holder.tagTainer.removeAllViews();
+        holder.tvNone.setVisibility(View.GONE);
         //get all the events for the day I just set to zero for easy loading
-        if(b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/ != null) {
-            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.events) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-                holder.tagTainer.addView(v);
-            }
+        if(b.days != null) {
+            if(b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/) {
+                Day d = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/);
+                for (String cat : d.events) {
+                    @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
+                    ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                    holder.tagTainer.addView(v);
+                }
 
-            //get all the specials for the day
-            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.specials) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-                holder.tagTainer.addView(v);
+                for (String cat : d.specials) {
+                    @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
+                    ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                    holder.tagTainer.addView(v);
+                }
+            }
+            else {
+                holder.tvNone.setVisibility(View.VISIBLE);
             }
         }
         //make the specials invisible if there are none
@@ -73,15 +81,19 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         holder.tvBarName.setText(b.barName);
         holder.tvWaitTime.setText(b.wait);
 
-        //don't show if if there is no wait
-        if(b.wait.equals(""))
-            holder.tvWaitTime.setVisibility(View.GONE);
-
         //don't show under cover if there isn't one
         if(b.coverUnder.length() > 1)
             holder.tvCover.setText(b.coverOver + " | " + b.coverUnder);
         else
             holder.tvCover.setText(b.coverOver);
+        if(b.coverOver.equals("0")) {
+            holder.tvCover.setText("No Cover");
+            holder.tvCover.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperTextTransparent)));
+        }
+        if(b.wait.equals("")) {
+            holder.tvWaitTime.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperTextTransparent)));
+            holder.tvWaitTime.setText("No Wait");
+        }
 
         switch (b.litness) {
             case "1":
@@ -117,7 +129,7 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
         LinearLayout tagTainer;
         private CardView cardContainer;
-        private TextView tvBarName, tvWaitTime, tvCover;
+        private TextView tvBarName, tvWaitTime, tvCover, tvNone;
         private ImageView imgLit;
 
         BarViewHolder(View v) {
@@ -127,6 +139,7 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
             tvBarName = itemView.findViewById(R.id.barcard_alt_name);
             tvWaitTime = itemView.findViewById(R.id.barcard_alt_wait);
             tvCover = itemView.findViewById(R.id.barcard_alt_cover);
+            tvNone = itemView.findViewById(R.id.barcard_no_events);
             imgLit = itemView.findViewById(R.id.barcard_img_litness);
         }
     }

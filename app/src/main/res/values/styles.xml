@@ -13,7 +13,6 @@
 
 
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground">@color/colorForeground</item>
     </style>
 
     <style name="_EditText">
@@ -128,7 +127,9 @@
     <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="actionMenuTextColor">@color/Primary</item>
         <item name="android:textColorSecondary">@color/Primary</item>
-        <item name="android:textColor">@color/Primary</item>
+        <item name="android:panelFullBackground">@color/colorForeground</item>
+        <item name="android:popupBackground">@color/colorForeground</item>
+        <item name="android:itemBackground">@color/colorForeground</item>
     </style>
 
 </resources>

@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.litness.litness.Adapter.BarCardAdapter;
 import com.example.litness.litness.Dialog.LoginDialog;
@@ -27,6 +26,7 @@ import com.example.litness.litness.Dialog.YesNoDialog;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private BarCardAdapter adapter;
 
     private Menu searchMenu;
-    private Menu sortMenu;
     ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
     private String query = "";
+
+    private String sort = "D";
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -69,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         initMenuDrawer();
-        updateFilters();
+        updateBars();
     }
 
     public void populateBars() {
         activeFilters.add("All Bars");
-        updateFilters();
+        updateBars();
         LinearLayout ll = findViewById(R.id.main_container_filters);
         for(String s : getResources().getStringArray(R.array.filter_options)){
             int layout, hiddenLayout;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                     activeFilters.add(s);
 
-                updateFilters();
+                updateBars();
 
             });
 
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     activeFilters.add(s);
                 else
                     activeFilters.remove(s);
-                updateFilters();
+                updateBars();
             });
 
             ll.addView(v);
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateFilters(){
+    public void updateBars(){
         Set<String> bs = Client.barMap.keySet();
         List<Bar> filtered = new ArrayList<>();
         for(String s : bs){
@@ -136,8 +137,17 @@ public class MainActivity extends AppCompatActivity {
             if(add && b.barName.toLowerCase().contains(query.toLowerCase()))
                 filtered.add(b);
         }
-        adapter.updateBars(filtered);
+        if(sort.equals("AZ"))
+            Collections.sort(filtered, (b1, b2) -> b1.barName.compareTo(b2.barName));
+        else if(sort.equals("ZA"))
+            Collections.sort(filtered, (b1, b2) -> b2.barName.compareTo(b1.barName));
+        else if(sort.equals("LH"))
+            Collections.sort(filtered, (b1, b2) -> b2.coverOver.compareTo(b1.coverOver));
+        else if(sort.equals("HL"))
+            Collections.sort(filtered, (b1, b2) -> b1.coverOver.compareTo(b2.coverOver));
+            adapter.updateBars(filtered);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,13 +176,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String q) {
                 query = q;
-                updateFilters();
+                updateBars();
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String q) {
                 query = q;
-                updateFilters();
+                updateBars();
                 return false;
             }
         });
@@ -182,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void actionSwipeRefresh() {
         swipeContainer.setRefreshing(true); {
-            updateFilters();
+            updateBars();
         }
         if (swipeContainer.isRefreshing())
             swipeContainer.setRefreshing(false);
@@ -196,17 +206,30 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         switch (id) {
+            case R.id.sortmenu_default:
+                item.setChecked(true);
+                sort = "D";
+                updateBars();
+                break;
             case R.id.sortmenu_AZ:
-                Toast.makeText(this,"AZ",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                sort = "AZ";
+                updateBars();
                 break;
             case R.id.sortmenu_ZA:
-                Toast.makeText(this,"ZA",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                sort = "ZA";
+                updateBars();
                 break;
             case R.id.sortmenu_HL:
-                Toast.makeText(this,"HL",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                sort = "HL";
+                updateBars();
                 break;
             case R.id.sortmenu_LH:
-                Toast.makeText(this,"LH",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                sort = "LH";
+                updateBars();
                 break;
         }
         return super.onOptionsItemSelected(item);

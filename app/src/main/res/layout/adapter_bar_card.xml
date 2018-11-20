@@ -64,7 +64,7 @@
 
             <TextView
                 android:id="@+id/barcard_alt_cover"
-                style="@style/_HelperText"
+                style="@style/_HelperText_Lower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -78,7 +78,7 @@
 
             <TextView
                 android:id="@+id/barcard_alt_wait"
-                style="@style/_HelperText"
+                style="@style/_HelperText_Lower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -102,11 +102,28 @@
 
                 <LinearLayout
                     android:id="@+id/barcard_container_tags"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="left"
-                    android:orientation="horizontal" />
+                    android:orientation="horizontal" >
+
+                </LinearLayout>
             </HorizontalScrollView>
+            <TextView
+                android:id="@+id/barcard_no_events"
+                android:textColor="@color/HelperTextTransparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="No Events or Specials"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barcard_img_litness"
+                android:visibility="gone"/>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

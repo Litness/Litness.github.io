@@ -20,6 +20,8 @@ import com.example.litness.litness.Dialog.ImageDialog;
 import com.example.litness.litness.Dialog.LoginDialog;
 import com.example.litness.litness.Dialog.MenuDialog;
 import com.example.litness.litness.Dialog.ReviewDialog;
+import com.example.litness.litness.Bar.Day;
+
 
 import java.util.Date;
 import java.util.List;
@@ -89,6 +91,7 @@ public class BarDisplayActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.bar_alt_description)).setText(b.description);
         ((TextView) findViewById(R.id.bar_alt_cover_over)).setText(b.coverOver);
         ((TextView) findViewById(R.id.bar_alt_cover_under)).setText(b.coverUnder);
+        ((TextView) findViewById(R.id.bar_wait)).setText(b.wait);
         ((TextView) findViewById(R.id.bar_alt_rating)).setText(b.rating);
 
         //make sure there is an under cover
@@ -96,6 +99,10 @@ public class BarDisplayActivity extends AppCompatActivity {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
+        if(b.coverOver.equals("0"))
+            ((TextView) findViewById(R.id.bar_alt_cover_over)).setText("None");
+        if(b.wait.equals(""))
+            ((TextView) findViewById(R.id.bar_wait)).setText("No Wait");
 
         //Set the day of the week for Event and Specials
         ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
@@ -157,23 +164,33 @@ public class BarDisplayActivity extends AppCompatActivity {
 
     private void setEventsAndSpecials() {
         //I just set to zero for easy loading
-        if(b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/) != null) {
-            LinearLayout events = findViewById(R.id.bar_events);
-            for (String cat : b.days.get(0)/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/.events) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-                events.addView(v);
+        if(b.days != null) {
+            if (b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/) {
+                Day d = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/);
+                LinearLayout events = findViewById(R.id.bar_events);
+                if(d.events.size() != 0) {
+                    for (String cat : d.events) {
+                        @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
+                        ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                        events.addView(v);
+                    }
+                }
+                else
+                    events.setVisibility(View.GONE);
+                LinearLayout specials = findViewById(R.id.bar_specials);
+                if(d.specials.size() != 0) {
+                    for (String cat : d.specials) {
+                        @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
+                        ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                        specials.addView(v);
+                    }
+                }
+                else
+                    specials.setVisibility(View.GONE);
             }
-            LinearLayout specials = findViewById(R.id.bar_specials);
-            for (String cat : b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1*/).specials) {
-                @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
-                ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-                specials.addView(v);
-            }
+            else
+                findViewById(R.id.bar_alt_noevents).setVisibility(View.VISIBLE);
         }
-        //make the events and special bar gone if there are none
-        else
-            findViewById(R.id.bar_card_specials).setVisibility(View.GONE);
     }
 
     private void updateLitness(List<String> info) {

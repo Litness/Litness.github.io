@@ -114,8 +114,6 @@ public class Client extends AppCompatActivity {
         //Loosa Info
         bar = new Bar();
         bar.barName = "Loosa Bar";
-        bar.coverOver = "0";
-        bar.wait = "No wait";
         bar.phone = "(205) 737-7440";
         bar.address = "412 20th Ave, Tuscaloosa, AL 35401";
         bar.description = "A nice chill bar with a large assortment of beer selections.  Offers games like Mario Kart, Pinball, Ping Pong, board games, and even guitars that you can play.";
@@ -288,8 +286,6 @@ public class Client extends AppCompatActivity {
         //Egans
         bar = new Bar();
         bar.barName = "Egans";
-        bar.coverOver = "";
-        bar.wait = "";
         bar.phone = "(205) 758-9413";
         bar.address = "1229 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Weird bar for older people of Tuscaloosa.";
@@ -337,8 +333,6 @@ public class Client extends AppCompatActivity {
         //Houndstooth
         bar = new Bar();
         bar.barName = "Houndstooth";
-        bar.coverOver = "0";
-        bar.wait = "0";
         bar.phone = "(205) 752-8444";
         bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Longtime collegial hangout offering darts & pool tables, plus an outdoor patio & sports on many TVs..";
@@ -383,8 +377,6 @@ public class Client extends AppCompatActivity {
         //Jackies
         bar = new Bar();
         bar.barName = "Jackies";
-        bar.coverOver = "Never";
-        bar.wait = "Never";
         bar.phone = "(205) 758-9179";
         bar.address = "2111 Paul W. Bryant Dr, Tuscaloosa, AL 35401";
         bar.description = "Local bar famous for karoake";
@@ -433,7 +425,6 @@ public class Client extends AppCompatActivity {
         bar = new Bar();
         bar.barName = "Moe's Original BBQ";
         bar.coverOver = "$5";
-        bar.wait = "None";
         bar.phone = "(205) 752-3616";
         bar.address = "2101 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Easygoing chain serving Alabama-style pulled pork & other meats smoked in-house.  Fun and chill bar";
@@ -497,8 +488,6 @@ public class Client extends AppCompatActivity {
         //Wheelhouse
         bar = new Bar();
         bar.barName = "The Wheelhouse Pub";
-        bar.coverOver = "None";
-        bar.wait = "None";
         bar.phone = "(205) 535-5933";
         bar.address = "2326 4th St, Tuscaloosa, AL 35401";
         bar.description = "Fun bar with pool tables, darts, ski ball, basketball, and more.";
@@ -514,7 +503,7 @@ public class Client extends AppCompatActivity {
 
         bar.menu.drinks.add(new Item("Domestics", 4));
         bar.menu.drinks.add(new Item("Imports", 5));
-        bar.menu.drinks.add(new Item("Wells", 5);
+        bar.menu.drinks.add(new Item("Wells", 5));
         bar.menu.drinks.add(new Item("Calls", 6));
 
         bar.menu.food.add(new Item("Pizza", 5));

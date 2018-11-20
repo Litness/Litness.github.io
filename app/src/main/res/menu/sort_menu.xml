@@ -8,21 +8,25 @@
         app:showAsAction="always"
         android:title="Sort" >
             <menu>
-                <item
-                    android:id="@+id/sortmenu_distance"
-                    android:title="Distance" />
-                <item
-                    android:id="@+id/sortmenu_AZ"
-                    android:title="Name A-Z" />
-                <item
-                    android:id="@+id/sortmenu_ZA"
-                    android:title="Name Z-A" />
-                <item
-                    android:id="@+id/sortmenu_HL"
-                    android:title="Cover High-Low" />
-                <item
-                    android:id="@+id/sortmenu_LH"
-                    android:title="Cover Low-High" />
+                <group android:id="@+id/sortmenu_checkable_group"
+                    android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/sortmenu_default"
+                        android:checked="true"
+                        android:title="Default" />
+                    <item
+                        android:id="@+id/sortmenu_AZ"
+                        android:title="Name A-Z" />
+                    <item
+                        android:id="@+id/sortmenu_ZA"
+                        android:title="Name Z-A" />
+                    <item
+                        android:id="@+id/sortmenu_HL"
+                        android:title="Cover High-Low" />
+                    <item
+                        android:id="@+id/sortmenu_LH"
+                        android:title="Cover Low-High" />
+                </group>
             </menu>
         </item>
 

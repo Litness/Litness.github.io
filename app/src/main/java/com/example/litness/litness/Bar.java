@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Bar {
     public String barName = "";
-    public String coverOver = "$0";
-    public String coverUnder = "";
+    public String coverOver = "0";
+    public String coverUnder = "0";
     public String wait = "";
     public String litness = "1";
     public String phone = "420-867-5309";

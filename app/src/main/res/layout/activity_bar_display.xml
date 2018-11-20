@@ -176,17 +176,17 @@
 
                     <TextView
                         android:id="@+id/bar_alt_cover_over"
-                        style="@style/_HelperText"
+                        style="@style/_HelperText_Lower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$10"
+                        android:text="$69"
                         android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@id/textView12"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView13"
-                        style="@style/_HelperText"
+                        style="@style/_HelperText_Lower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -196,10 +196,10 @@
                         app:layout_constraintTop_toTopOf="parent" />
                     <TextView
                         android:id="@+id/bar_alt_cover_under"
-                        style="@style/_HelperText"
+                        style="@style/_HelperText_Lower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" $20"
+                        android:text=" $69"
                         android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@id/textView13"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="marquee"
                         android:maxLines="2"
-                        android:text="10 Minute wait"
+                        android:text="Temp Wait"
                         android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/bar_alt_cover_over" />
@@ -284,14 +284,14 @@
                         android:id="@+id/textView5"
                         style="@style/_HelperText"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
                         android:text=" Events and Specials"
                         android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@id/bar_alt_day"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <HorizontalScrollView
-                        android:id="@+id/horiz"
+                        android:id="@+id/horiz1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -308,11 +308,12 @@
                     </HorizontalScrollView>
 
                     <HorizontalScrollView
+                        android:id="@+id/horiz2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/horiz"
+                        app:layout_constraintTop_toBottomOf="@+id/horiz1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.0">
 
@@ -323,6 +324,17 @@
                             android:orientation="horizontal" />
 
                     </HorizontalScrollView>
+
+                    <TextView
+                        android:id="@+id/bar_alt_noevents"
+                        android:textColor="@color/HelperTextTransparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5"
+                        android:text="No Events or Specials"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/bar_button_allspecials"
