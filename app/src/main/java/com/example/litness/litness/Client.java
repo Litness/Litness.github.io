@@ -523,7 +523,7 @@ public class Client extends AppCompatActivity {
         bar.photos.add(R.drawable.img_egans1);
         bar.photos.add(R.drawable.img_egans2);
 
-        bar.livePhotos.add(R.drawable.img_galletes0);
+        bar.livePhotos.add(R.drawable.img_egans0);
 
         barMap.put(bar.barName,bar);
         //End Egans
@@ -812,7 +812,7 @@ public class Client extends AppCompatActivity {
 
         bar.livePhotos.add(R.drawable.img_rhythm3);
         bar.livePhotos.add(R.drawable.img_rhythm4);
-        
+
         barMap.put(bar.barName,bar);
         //End Rhythm and Brews
     }
