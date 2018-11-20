@@ -110,13 +110,7 @@ public class BarDisplayActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.bar_wait)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
         }
 
-        //Set the day of the week for Event and Specials
-        String day = "Today's";
-        if(b.days != null) {
-            if (b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/)
-                day = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/).day;
-        }
-        ((TextView) findViewById(R.id.bar_alt_day)).setText(day);
+        ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%s'S", android.text.format.DateFormat.format("EEEE", new Date())));
 
         //get all the events for the day
         setEventsAndSpecials();
@@ -176,30 +170,34 @@ public class BarDisplayActivity extends AppCompatActivity {
     private void setEventsAndSpecials() {
         //I just set to zero for easy loading
         if(b.days != null) {
-            if (b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/) {
-                Day d = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/);
-                LinearLayout events = findViewById(R.id.bar_events);
-                if(d.events.size() != 0) {
-                    for (String cat : d.events) {
-                        @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
-                        ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-                        events.addView(v);
+            boolean printNone = true;
+            for(int i = 0; i < b.days.size(); i++) {
+                Day d = b.days.get(i);
+                if(d.day.equals(String.format("%s", android.text.format.DateFormat.format("EEEE", new Date())))) {
+                    printNone = false;
+                    LinearLayout events = findViewById(R.id.bar_events);
+                    if (d.events.size() != 0) {
+                        for (String cat : d.events) {
+                            @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
+                            ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                            events.addView(v);
+                        }
                     }
-                }
-                else
-                    events.setVisibility(View.GONE);
-                LinearLayout specials = findViewById(R.id.bar_specials);
-                if(d.specials.size() != 0) {
-                    for (String cat : d.specials) {
-                        @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
-                        ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-                        specials.addView(v);
+                    else
+                        events.setVisibility(View.GONE);
+                    LinearLayout specials = findViewById(R.id.bar_specials);
+                    if (d.specials.size() != 0) {
+                        for (String cat : d.specials) {
+                            @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
+                            ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                            specials.addView(v);
+                        }
                     }
+                    else
+                        specials.setVisibility(View.GONE);
                 }
-                else
-                    specials.setVisibility(View.GONE);
             }
-            else
+            if(printNone)
                 findViewById(R.id.bar_alt_noevents).setVisibility(View.VISIBLE);
         }
     }

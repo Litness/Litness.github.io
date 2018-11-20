@@ -22,7 +22,9 @@ import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewHolder> {
@@ -52,24 +54,26 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
 
         holder.tagTainer.removeAllViews();
         holder.tvNone.setVisibility(View.GONE);
-        //get all the events for the day I just set to zero for easy loading
         if(b.days != null) {
-            if(b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/) {
-                Day d = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/);
-                for (String cat : d.events) {
-                    @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
-                    ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
-                    holder.tagTainer.addView(v);
-                }
-                for (String cat : d.specials) {
-                    @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
-                    ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
-                    holder.tagTainer.addView(v);
+            boolean printNone = true;
+            for(int i = 0; i < b.days.size(); i++) {
+                Day d = b.days.get(i);
+                if(d.day.equals(String.format("%s", android.text.format.DateFormat.format("EEEE", new Date())))) {
+                    printNone = false;
+                    for (String cat : d.events) {
+                        @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_events, null, false);
+                        ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
+                        holder.tagTainer.addView(v);
+                    }
+                    for (String cat : d.specials) {
+                        @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
+                        ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);
+                        holder.tagTainer.addView(v);
+                    }
                 }
             }
-            else {
+            if (printNone)
                 holder.tvNone.setVisibility(View.VISIBLE);
-            }
         }
         //make the specials invisible if there are none
         else {
