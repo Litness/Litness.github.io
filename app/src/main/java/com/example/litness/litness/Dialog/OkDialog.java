@@ -12,11 +12,11 @@ import com.example.litness.litness.R;
 
 import java.util.Objects;
 
-public class OkDialog extends AlertDialog{
+class OkDialog extends AlertDialog{
 
-    private String title;
-    private String text;
-    private Interface.WithVoidListener listener;
+    private final String title;
+    private final String text;
+    private final Interface.WithVoidListener listener;
 
     public OkDialog(Context ctx, String title, String text, Interface.WithVoidListener listener) {
         super(ctx);

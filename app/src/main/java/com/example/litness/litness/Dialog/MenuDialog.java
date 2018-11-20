@@ -13,9 +13,7 @@ import com.example.litness.litness.R;
 
 public class MenuDialog extends AlertDialog {
 
-    private Context ctx;
-    private ItemAdapter foodAdapter;
-    private ItemAdapter drinkAdapter;
+    private final Context ctx;
 
     public MenuDialog(Context c) {
         super(c);
@@ -32,7 +30,7 @@ public class MenuDialog extends AlertDialog {
 
         Bar b = Client.activeBar;
         if(b.menu.drinks.size() != 0) {
-            drinkAdapter = new ItemAdapter(ctx);
+            ItemAdapter drinkAdapter = new ItemAdapter(ctx);
             rvDrink.setAdapter(drinkAdapter);
             drinkAdapter.updateItems(b.menu.drinks);
         }
@@ -42,7 +40,7 @@ public class MenuDialog extends AlertDialog {
         }
 
         if(b.menu.food.size() != 0) {
-            foodAdapter = new ItemAdapter(ctx);
+            ItemAdapter foodAdapter = new ItemAdapter(ctx);
             rvFood.setAdapter(foodAdapter);
             foodAdapter.updateItems(b.menu.food);
         }

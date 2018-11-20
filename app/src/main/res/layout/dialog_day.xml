@@ -33,7 +33,6 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/daydialog_alt_title"
                 style="@style/_HeaderText"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"

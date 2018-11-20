@@ -14,9 +14,9 @@ import java.util.Objects;
 
 public class YesNoDialog extends AlertDialog{
 
-    private String title;
-    private String text;
-    private Interface.YesNoHandler handler;
+    private final String title;
+    private final String text;
+    private final Interface.YesNoHandler handler;
 
     public YesNoDialog(Context ctx, String title, String text, Interface.YesNoHandler handler) {
         super(ctx);

@@ -13,8 +13,7 @@ import java.util.List;
 
 public class ImageDialog extends AlertDialog {
 
-    private Context ctx;
-    private List<Integer> data;
+    private final List<Integer> data;
     private int index;
 
     private ImageView img;
@@ -23,7 +22,6 @@ public class ImageDialog extends AlertDialog {
 
     public ImageDialog(Context c, List<Integer> d, int i) {
         super(c, R.style.DialogTheme);
-        ctx = c;
         data = d;
         index = i;
     }

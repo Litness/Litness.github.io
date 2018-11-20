@@ -16,10 +16,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReviewDialogAdapter extends RecyclerView.Adapter<ReviewDialogAdapter.ReviewDialogViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     private List<Review> data = new ArrayList<>();
 
     public ReviewDialogAdapter(Context c) {
@@ -43,7 +44,7 @@ public class ReviewDialogAdapter extends RecyclerView.Adapter<ReviewDialogAdapte
         holder.tvRating.setText(r.rating);
         holder.tvText.setText(r.text);
         holder.tvUser.setText(r.user);
-        holder.tvDate.setText(new SimpleDateFormat("MM/dd/yy").format(new Date(r.timestamp)));
+        holder.tvDate.setText(new SimpleDateFormat("MM/dd/yy", Locale.US).format(new Date(r.timestamp)));
     }
 
     @Override
@@ -53,7 +54,10 @@ public class ReviewDialogAdapter extends RecyclerView.Adapter<ReviewDialogAdapte
 
     class ReviewDialogViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvRating, tvDate, tvText, tvUser;
+        private final TextView tvRating;
+        private final TextView tvDate;
+        private final TextView tvText;
+        private final TextView tvUser;
 
         ReviewDialogViewHolder(View v) {
             super(v);
@@ -64,7 +68,4 @@ public class ReviewDialogAdapter extends RecyclerView.Adapter<ReviewDialogAdapte
         }
     }
 
-    public List<Review> getData() {
-        return this.data;
-    }
 }

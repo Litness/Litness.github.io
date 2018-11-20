@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.CardDialogViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     private List<Day> data = new ArrayList<>();
 
     public DayDialogAdapter(Context c) {
@@ -97,12 +97,14 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
 
     class CardDialogViewHolder extends RecyclerView.ViewHolder{
 
-        private CardView cardView;
-        private TextView tvTitle, tvLabel1, tvLabel2, tvText1, tvText2;
+        private final TextView tvTitle;
+        private final TextView tvLabel1;
+        private final TextView tvLabel2;
+        private final TextView tvText1;
+        private final TextView tvText2;
 
         CardDialogViewHolder(View v) {
             super(v);
-            cardView = v.findViewById(R.id.daydialog_card);
             tvTitle = v.findViewById(R.id.daycard_alt_title);
             tvLabel1 = v.findViewById(R.id.daycard_label_1);
             tvLabel2 = v.findViewById(R.id.daycard_label_2);
@@ -111,7 +113,4 @@ public class DayDialogAdapter extends RecyclerView.Adapter<DayDialogAdapter.Card
         }
     }
 
-    public List<Day> getData() {
-        return this.data;
-    }
 }

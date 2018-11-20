@@ -2,9 +2,9 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/reviewdialog_card"
     app:cardElevation="2dp">
 
     <android.support.constraint.ConstraintLayout
@@ -32,7 +32,6 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/reviewdialog_alt_title"
                 style="@style/_HeaderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +72,8 @@
                 android:focusable="true"
                 android:stateListAnimator="@animator/button_anim"
                 app:cardCornerRadius="5dp"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                tools:targetApi="lollipop">
 
                 <TextView
                     style="@style/_DarkButton"

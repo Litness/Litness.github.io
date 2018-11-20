@@ -30,7 +30,7 @@ import java.util.Objects;
 
 public class BarDisplayActivity extends AppCompatActivity {
 
-    public Bar b;
+    private Bar b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,12 @@ public class BarDisplayActivity extends AppCompatActivity {
         }
 
         //Set the day of the week for Event and Specials
-        ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
+        String day = "Today's";
+        if(b.days != null) {
+            if (b.days.size() > 0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/)
+                day = b.days.get(0/*(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) - 1]*/).day;
+        }
+        ((TextView) findViewById(R.id.bar_alt_day)).setText(day);
 
         //get all the events for the day
         setEventsAndSpecials();
@@ -201,7 +206,6 @@ public class BarDisplayActivity extends AppCompatActivity {
 
     private void updateLitness(List<String> info) {
 
-        //TODO figure out way to force users to chose litness
         Client.activeBar.litness = info.get(0);
 
         //make sure it is valid input
