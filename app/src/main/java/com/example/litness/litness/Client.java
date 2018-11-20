@@ -189,9 +189,7 @@ public class Client extends AppCompatActivity {
 
         //Loosa Info
         bar = new Bar();
-        bar.barName = "Loosa Bar";
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
+        bar.barName = "Loosa Brews";
         bar.days = defDay;
         bar.phone = "(205) 737-7440";
         bar.address = "412 20th Ave, Tuscaloosa, AL 35401";
@@ -215,6 +213,14 @@ public class Client extends AppCompatActivity {
         bar.menu.drinks.add(new Item("Cahaba Imperial Stout", 6));
         bar.menu.drinks.add(new Item("Good People Golden Ale", 5));
         bar.menu.drinks.add(new Item("Good People Irish Stout", 4));
+
+        bar.photos.add(R.drawable.img_loosa0);
+        bar.photos.add(R.drawable.img_loosa1);
+        bar.photos.add(R.drawable.img_loosa2);
+
+        bar.livePhotos.add(R.drawable.img_loosa0);
+        bar.livePhotos.add(R.drawable.img_loosa1);
+        bar.livePhotos.add(R.drawable.img_loosa2);
 
         barMap.put(bar.barName,bar);
         //End Loosa
@@ -295,6 +301,16 @@ public class Client extends AppCompatActivity {
         bar.menu.drinks.add(new Item("Yellow Hammers", 8));
         bar.menu.drinks.add(new Item("Lemon Drop Shots", 3));
         bar.menu.drinks.add(new Item("Clearwater Shots", 2));
+
+        bar.photos.add(R.drawable.img_innisfree0);
+        bar.photos.add(R.drawable.img_innisfree1);
+        bar.photos.add(R.drawable.img_innisfree2);
+        bar.photos.add(R.drawable.img_innisfree3);
+
+        bar.livePhotos.add(R.drawable.img_innisfree0);
+        bar.livePhotos.add(R.drawable.img_innisfree1);
+        bar.livePhotos.add(R.drawable.img_innisfree2);
+        bar.livePhotos.add(R.drawable.img_innisfree3);
 
         barMap.put(bar.barName,bar);
         //End Innisfree
