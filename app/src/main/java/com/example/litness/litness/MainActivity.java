@@ -144,10 +144,16 @@ public class MainActivity extends AppCompatActivity {
             case "ZA":
                 Collections.sort(filtered, (b1, b2) -> b2.barName.compareTo(b1.barName));
                 break;
-            case "LH":
+            case "LitLH":
+                Collections.sort(filtered, (b1, b2) -> b1.litness.compareTo(b2.litness));
+                break;
+            case "LitHL":
+                Collections.sort(filtered, (b1, b2) -> b2.litness.compareTo(b1.litness));
+                break;
+            case "CovLH":
                 Collections.sort(filtered, (b1, b2) -> b2.coverOver.compareTo(b1.coverOver));
                 break;
-            case "HL":
+            case "CovHL":
                 Collections.sort(filtered, (b1, b2) -> b1.coverOver.compareTo(b2.coverOver));
                 break;
         }
@@ -227,14 +233,24 @@ public class MainActivity extends AppCompatActivity {
                 sort = "ZA";
                 updateBars();
                 break;
-            case R.id.sortmenu_HL:
+            case R.id.sortmenu_LitHL:
                 item.setChecked(true);
-                sort = "HL";
+                sort = "LitHL";
                 updateBars();
                 break;
-            case R.id.sortmenu_LH:
+            case R.id.sortmenu_LitLH:
                 item.setChecked(true);
-                sort = "LH";
+                sort = "LitLH";
+                updateBars();
+                break;
+            case R.id.sortmenu_CovHL:
+                item.setChecked(true);
+                sort = "CovHL";
+                updateBars();
+                break;
+            case R.id.sortmenu_covLH:
+                item.setChecked(true);
+                sort = "CovLH";
                 updateBars();
                 break;
         }

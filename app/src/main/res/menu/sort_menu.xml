@@ -19,10 +19,16 @@
                         android:id="@+id/sortmenu_ZA"
                         android:title="Name Z-A" />
                     <item
-                        android:id="@+id/sortmenu_HL"
+                        android:id="@+id/sortmenu_LitHL"
+                        android:title="Litness High-Low" />
+                    <item
+                        android:id="@+id/sortmenu_LitLH"
+                        android:title="Litness Low-High" />
+                    <item
+                        android:id="@+id/sortmenu_CovHL"
                         android:title="Cover High-Low" />
                     <item
-                        android:id="@+id/sortmenu_LH"
+                        android:id="@+id/sortmenu_covLH"
                         android:title="Cover Low-High" />
                 </group>
             </menu>
