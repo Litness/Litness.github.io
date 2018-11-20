@@ -190,7 +190,7 @@ public class Client extends AppCompatActivity {
         //Loosa Info
         bar = new Bar();
         bar.barName = "Loosa Brews";
-        //bar.days = defDay;
+        bar.days = defDay;
         bar.phone = "(205) 737-7440";
         bar.address = "412 20th Ave, Tuscaloosa, AL 35401";
         bar.description = "A nice chill bar with a large assortment of beer selections.  Offers games like Mario Kart, Pinball, Ping Pong, board games, and even guitars that you can play.";
