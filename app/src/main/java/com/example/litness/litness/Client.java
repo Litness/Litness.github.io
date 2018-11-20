@@ -194,7 +194,8 @@ public class Client extends AppCompatActivity {
         bar.phone = "(205) 737-7440";
         bar.address = "412 20th Ave, Tuscaloosa, AL 35401";
         bar.description = "A nice chill bar with a large assortment of beer selections.  Offers games like Mario Kart, Pinball, Ping Pong, board games, and even guitars that you can play.";
-        bar.tags.add("Brewery");
+        bar.tags.add("Breweries");
+        bar.tags.add("Outdoor Venues");
         bar.tags.add("All Bars");
         bar.litness ="2";
         bar.rating = "4.2";
@@ -227,8 +228,6 @@ public class Client extends AppCompatActivity {
 
         //Innisfree
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Innisfree";
         bar.coverOver = "$5";
         bar.wait = "5 Minutes";
@@ -237,6 +236,7 @@ public class Client extends AppCompatActivity {
         bar.address = "1925 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Fun Irish pub with good outdoor venue and a pool table";
         bar.tags.add("Bars with Food");
+        bar.tags.add("Outdoor Venues");
         bar.tags.add("All Bars");
         bar.rating = "4.0";
 
@@ -410,6 +410,7 @@ public class Client extends AppCompatActivity {
         bar.address = "1104 6th St, Tuscaloosa, AL 35401";
         bar.description = "Funnest 21+ bar in town.  Front room with large screen and back club room for dancing.";
         bar.tags.add("Night Clubs");
+        bar.tags.add("Outdoor Venues");
         bar.tags.add("All Bars");
         bar.litness = "5";
         bar.rating = "5";
@@ -531,7 +532,7 @@ public class Client extends AppCompatActivity {
         bar.address = "1300 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Longtime collegial hangout offering darts & pool tables, plus an outdoor patio & sports on many TVs..";
         bar.tags.add("All Bars");
-        bar.tags.add("Outdoor Venue");
+        bar.tags.add("Outdoor Venues");
         bar.litness = "2";
         bar.rating = "4.3";
 
@@ -572,7 +573,7 @@ public class Client extends AppCompatActivity {
         bar = new Bar();
         bar.photos = defPhotos;
         bar.livePhotos = defLive;
-        bar.barName = "Jackies";
+        bar.barName = "Jackie's Lounge";
         bar.phone = "(205) 758-9179";
         bar.address = "2111 Paul W. Bryant Dr, Tuscaloosa, AL 35401";
         bar.description = "Local bar famous for karoake";
@@ -627,7 +628,7 @@ public class Client extends AppCompatActivity {
         bar.address = "2101 University Blvd, Tuscaloosa, AL 35401";
         bar.description = "Easygoing chain serving Alabama-style pulled pork & other meats smoked in-house.  Fun and chill bar";
         bar.tags.add("Bars with Food");
-        bar.tags.add("Outdoor Venue");
+        bar.tags.add("Outdoor Venues");
         bar.tags.add("All Bars");
         bar.litness = "3";
         bar.rating = "4.1";
