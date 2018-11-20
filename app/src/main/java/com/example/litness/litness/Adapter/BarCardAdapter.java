@@ -22,7 +22,6 @@ import com.example.litness.litness.Client;
 import com.example.litness.litness.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -62,7 +61,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
                     ((TextView) v.findViewById(R.id.adapter_alt_event)).setText(cat);
                     holder.tagTainer.addView(v);
                 }
-
                 for (String cat : d.specials) {
                     @SuppressLint("InflateParams") View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_specials, null, false);
                     ((TextView) v.findViewById(R.id.adapter_alt_special)).setText(cat);

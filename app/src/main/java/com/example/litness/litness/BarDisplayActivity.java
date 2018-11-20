@@ -3,6 +3,7 @@ package com.example.litness.litness;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -99,10 +100,15 @@ public class BarDisplayActivity extends AppCompatActivity {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
-        if(b.coverOver.equals("0"))
+        if(b.coverOver.equals("0")) {
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setText("None");
-        if(b.wait.equals(""))
+            ((TextView) findViewById(R.id.bar_alt_cover_over)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
+
+        }
+        if(b.wait.equals("")) {
             ((TextView) findViewById(R.id.bar_wait)).setText("No Wait");
+            ((TextView) findViewById(R.id.bar_wait)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
+        }
 
         //Set the day of the week for Event and Specials
         ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%sS", android.text.format.DateFormat.format("EEEE", new Date())));
