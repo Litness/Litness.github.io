@@ -227,8 +227,6 @@ public class Client extends AppCompatActivity {
 
         //Innisfree
         bar = new Bar();
-        bar.photos = defPhotos;
-        bar.livePhotos = defLive;
         bar.barName = "Innisfree";
         bar.coverOver = "$5";
         bar.wait = "5 Minutes";
