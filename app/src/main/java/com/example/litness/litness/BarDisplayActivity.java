@@ -98,12 +98,12 @@ public class BarDisplayActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.bar_wait)).setText(b.wait);
         ((TextView) findViewById(R.id.bar_alt_rating)).setText(b.rating);
 
-        //make sure there is an under cover
+        //make sure there is an under cover if you're going to display it
         if(b.coverUnder.length() < 2) {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
-        if(b.coverOver.equals("0")) {
+        if(b.coverOver.equals("0") || b.coverOver.equals("$0")) {
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setText("None");
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
 
@@ -178,6 +178,12 @@ public class BarDisplayActivity extends AppCompatActivity {
     }
 
     private void setEventsAndSpecials() {
+        LinearLayout events = findViewById(R.id.bar_events);
+        LinearLayout specials = findViewById(R.id.bar_specials);
+
+        events.removeAllViews();
+        specials.removeAllViews();
+
         //I just set to zero for easy loading
         if(b.days != null) {
             boolean printNone = true;
@@ -185,7 +191,6 @@ public class BarDisplayActivity extends AppCompatActivity {
                 Day d = b.days.get(i);
                 if(d.day.equals(String.format("%s", android.text.format.DateFormat.format("EEEE", new Date())))) {
                     printNone = false;
-                    LinearLayout events = findViewById(R.id.bar_events);
                     if (d.events.size() != 0) {
                         for (String cat : d.events) {
                             @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_events, null, false);
@@ -195,7 +200,6 @@ public class BarDisplayActivity extends AppCompatActivity {
                     }
                     else
                         events.setVisibility(View.GONE);
-                    LinearLayout specials = findViewById(R.id.bar_specials);
                     if (d.specials.size() != 0) {
                         for (String cat : d.specials) {
                             @SuppressLint("InflateParams") View v = LayoutInflater.from(this).inflate(R.layout.adapter_specials, null, false);
