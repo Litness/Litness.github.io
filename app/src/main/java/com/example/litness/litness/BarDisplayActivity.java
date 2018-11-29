@@ -52,7 +52,8 @@ public class BarDisplayActivity extends AppCompatActivity {
                 new CheckInDialog(this, this::updateLitness).show();
         } );
 
-        findViewById(R.id.bar_alt_phone).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ b.phone))));
+        if(!b.phone.equals("N/A"))
+            findViewById(R.id.bar_alt_phone).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ b.phone))));
 
         findViewById(R.id.bar_alt_address).setOnClickListener(v-> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(b.address) + b.barName))));
 
@@ -83,19 +84,21 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         setLitness();
 
-        //make phone underlined
-        SpannableString phone = new SpannableString(b.phone);
-        phone.setSpan(new UnderlineSpan(), 0, phone.length(), 0);
-        ((TextView) findViewById(R.id.bar_alt_phone)).setText(phone);
+        if(b.phone.equals("N/A"))
+            findViewById(R.id.bar_alt_phone).setVisibility(View.GONE);
+        else {
+            //make phone underlined
+            SpannableString phone = new SpannableString(b.phone);
+            phone.setSpan(new UnderlineSpan(), 0, phone.length(), 0);
+            ((TextView) findViewById(R.id.bar_alt_phone)).setText(phone);
+        }
 
         SpannableString address = new SpannableString(b.address);
         address.setSpan(new UnderlineSpan(), 0, address.length(), 0);
         ((TextView) findViewById(R.id.bar_alt_address)).setText(address);
 
         ((TextView) findViewById(R.id.bar_alt_description)).setText(b.description);
-        ((TextView) findViewById(R.id.bar_alt_cover_over)).setText(b.coverOver);
         ((TextView) findViewById(R.id.bar_alt_cover_under)).setText(b.coverUnder);
-        ((TextView) findViewById(R.id.bar_wait)).setText(b.wait);
         ((TextView) findViewById(R.id.bar_alt_rating)).setText(b.rating);
 
         //make sure there is an under cover if you're going to display it
@@ -103,14 +106,31 @@ public class BarDisplayActivity extends AppCompatActivity {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
-        if(b.coverOver.equals("0") || b.coverOver.equals("$0")) {
+        else {
+            ((TextView) findViewById(R.id.bar_alt_cover_under)).setText(b.coverUnder);
+            findViewById(R.id.bar_alt_cover_under).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView13).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.bar_alt_cover_under)).setTextColor(ContextCompat.getColor(this,(R.color.HelperText)));
+        }
+
+        if(b.coverOver.equals("0")) {
+            findViewById(R.id.bar_lablel_cover_over).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setText("None");
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
-
         }
+        else {
+            ((TextView) findViewById(R.id.bar_alt_cover_over)).setText(b.coverOver);
+            findViewById(R.id.bar_lablel_cover_over).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.bar_alt_cover_over)).setTextColor(ContextCompat.getColor(this,(R.color.HelperText)));
+        }
+
         if(b.wait.equals("")) {
             ((TextView) findViewById(R.id.bar_wait)).setText("No Wait");
             ((TextView) findViewById(R.id.bar_wait)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
+        }
+        else {
+            ((TextView) findViewById(R.id.bar_wait)).setText(b.wait);
+            ((TextView) findViewById(R.id.bar_wait)).setTextColor(ContextCompat.getColor(this,(R.color.HelperText)));
         }
 
         ((TextView) findViewById(R.id.bar_alt_day)).setText(String.format("%s'S", android.text.format.DateFormat.format("EEEE", new Date())));
@@ -131,14 +151,12 @@ public class BarDisplayActivity extends AppCompatActivity {
         if(b.livePhotos.size() == 0) {
             ((TextView) findViewById(R.id.bar_alt_livephotos)).setText("No Live Photos");
             ((TextView) findViewById(R.id.bar_alt_livephotos)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
-
         }
 
         if(b.reviews.size() == 0) {
             findViewById(R.id.bar_layout_rating).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.bar_alt_reviews)).setText("No Reviews");
             ((TextView) findViewById(R.id.bar_alt_reviews)).setTextColor(ContextCompat.getColor(this,(R.color.PrimaryTransparent)));
-
         }
 
     }
@@ -221,12 +239,24 @@ public class BarDisplayActivity extends AppCompatActivity {
         Client.activeBar.litness = info.get(0);
 
         //make sure it is valid input
-        if(info.get(1).length() > 0)
-            Client.activeBar.coverOver = "$" + info.get(1);
-        if(info.get(2).length() > 0)
-            Client.activeBar.coverUnder = "$" + info.get(2);
-        if(info.get(3).length() > 0)
-            Client.activeBar.wait = info.get(3) + " minutes";
+        if(info.get(1).length() > 0) {
+            if (info.get(1).equals("0"))
+                Client.activeBar.coverOver = info.get(1);
+            else
+                Client.activeBar.coverOver = "$" + info.get(1);
+        }
+        if(info.get(2).length() > 0) {
+            if (info.get(2).equals("0"))
+                Client.activeBar.coverUnder = info.get(2);
+            else
+                Client.activeBar.coverUnder = "$" + info.get(2);
+        }
+        if(info.get(3).length() > 0) {
+            if (info.get(3).equals("0"))
+                Client.activeBar.wait = "";
+            else
+                Client.activeBar.wait = info.get(3) + " minutes";
+        }
 
         //update that bars info
         Client.barMap.put(Client.activeBar.barName,Client.activeBar);

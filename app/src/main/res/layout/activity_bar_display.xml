@@ -172,9 +172,19 @@
                         style="@style/_HelperText_Lower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cover: 21+ "
+                        android:text="Cover: "
                         android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/bar_lablel_cover_over"
+                        style="@style/_HelperText_Lower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cover: 21+ "
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toEndOf="@id/textView12"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -184,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:text="$69"
                         android:textSize="15sp"
-                        app:layout_constraintStart_toEndOf="@id/textView12"
+                        app:layout_constraintStart_toEndOf="@id/bar_lablel_cover_over"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView

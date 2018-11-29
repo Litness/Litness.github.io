@@ -42,9 +42,12 @@ public class CheckInDialog extends AlertDialog{
         wait = findViewById(R.id.checkindialog_input_wait);
 
         sb.setProgress(Integer.parseInt(Client.activeBar.litness));
-        coverOver.setHint(Client.activeBar.coverOver);
-        coverUnder.setHint(Client.activeBar.coverUnder);
-        wait.setHint(Client.activeBar.wait);
+        coverOver.setHint("$" + Client.activeBar.coverOver);
+        coverUnder.setHint("$" + Client.activeBar.coverUnder);
+        if(Client.activeBar.wait.equals(""))
+            wait.setHint("None");
+        else
+            wait.setHint(Client.activeBar.wait);
 
         Objects.requireNonNull((View) findViewById(R.id.checkindialog_button_checkin)).setOnClickListener(x -> {
             dismiss();
