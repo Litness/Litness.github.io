@@ -84,12 +84,12 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         holder.tvWaitTime.setText(b.wait);
 
         //don't show under cover if there isn't one
-        if(b.coverUnder.length() > 1)
+        if(!b.coverUnder.equals("$0"))
             holder.tvCover.setText(b.coverOver + " | " + b.coverUnder);
         else
             holder.tvCover.setText(b.coverOver);
 
-        if(b.coverOver.equals("0")) {
+        if(b.coverOver.equals("$0")) {
             holder.tvCover.setText("No Cover");
             holder.tvCover.setTextColor(ContextCompat.getColor(ctx,(R.color.HelperTextTransparent)));
         }

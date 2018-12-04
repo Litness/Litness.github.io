@@ -102,7 +102,7 @@ public class BarDisplayActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.bar_alt_rating)).setText(b.rating);
 
         //make sure there is an under cover if you're going to display it
-        if(b.coverUnder.length() < 2) {
+        if(b.coverUnder.equals("$0")) {
             findViewById(R.id.bar_alt_cover_under).setVisibility(View.GONE);
             findViewById(R.id.textView13).setVisibility(View.GONE);
         }
@@ -113,7 +113,7 @@ public class BarDisplayActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.bar_alt_cover_under)).setTextColor(ContextCompat.getColor(this,(R.color.HelperText)));
         }
 
-        if(b.coverOver.equals("0")) {
+        if(b.coverOver.equals("$0")) {
             findViewById(R.id.bar_lablel_cover_over).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setText("None");
             ((TextView) findViewById(R.id.bar_alt_cover_over)).setTextColor(ContextCompat.getColor(this,(R.color.HelperTextTransparent)));
@@ -240,15 +240,11 @@ public class BarDisplayActivity extends AppCompatActivity {
 
         //make sure it is valid input
         if(info.get(1).length() > 0) {
-            if (info.get(1).equals("0"))
-                Client.activeBar.coverOver = info.get(1);
-            else
+
                 Client.activeBar.coverOver = "$" + info.get(1);
         }
         if(info.get(2).length() > 0) {
-            if (info.get(2).equals("0"))
-                Client.activeBar.coverUnder = info.get(2);
-            else
+
                 Client.activeBar.coverUnder = "$" + info.get(2);
         }
         if(info.get(3).length() > 0) {
